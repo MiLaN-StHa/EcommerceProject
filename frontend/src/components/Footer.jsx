@@ -7,7 +7,7 @@ const Footer = () => {
     <div>
       <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'> 
             <div>
-                <img src={logo} className='mb-5 w-28 h-[110px] ' alt="" />
+            <p className='text-xl font-medium mb-5'>NAOMI COLLECTION</p>
                 <p className='w-full md:w-[65%] text-gray-600'>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias quidem quia accusantium ipsum harum maxime veritatis, magni debitis deserunt eaque adipisci eligendi omnis exercitationem beatae repudiandae odio quasi obcaecati veniam.
                 </p>
@@ -28,6 +28,11 @@ const Footer = () => {
                     <li>contact@naomicollection.com</li>
                 </ul>
             </div>
+      </div>
+
+      <div>
+        <hr />
+        <p className='py-5 text-sm text-center'>Copyright 2025@naomicollection.com - All Rights Reserved.</p>
       </div>
     </div>
   )
