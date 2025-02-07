@@ -74,6 +74,28 @@ import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 
+import earring1 from '../asssets/Earrings/earring1.jpg'
+import earring2 from '../asssets/Earrings/earring2.jpg'
+import earring3 from '../asssets/Earrings/earring3.jpg'
+import earring4 from '../asssets/Earrings/earring4.jpg'
+import earring5 from '../asssets/Earrings/earring5.jpg'
+
+import ring1 from '../asssets/Rings/malering (1).jpg'
+import ring2 from '../asssets/Rings/malering (2).jpg'
+import ring3 from '../asssets/Rings/malering (3).jpg'
+import ring4 from '../asssets/Rings/malering (4).jpg'
+import earring6 from '../asssets/Earrings/earring6.jpg'
+import earring7 from '../asssets/Earrings/earring7.jpg'
+import earring8 from '../asssets/Earrings/earring8.jpg'
+import earring9 from '../asssets/Earrings/earring9.jpg'
+
+import bracelet1 from '../asssets/Bracelet/smile (1).jpg'
+import bracelet2 from '../asssets/Bracelet/smile (2).jpg'
+
+
+
+
+
 export const assets = {
     logo,
     hero_img,
@@ -96,6 +118,162 @@ export const assets = {
 }
 
 export const products = [
+
+    {
+        _id: "earring1",
+        name: "woman earring",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring1],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "earring2",
+        name: "woman earring",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring2],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "earring3",
+        name: "woman earring",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring3],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "earring4",
+        name: "woman earring",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring4],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "earring5",
+        name: "woman earring",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring5],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "earring6",
+        name: "woman earring",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring6],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "earring7",
+        name: "woman earring",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring7],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "ring1",
+        name: "men ring",
+        description: "A silver men ring.",
+        price: 100,
+        image: [ring1],
+        category: "Men",
+        subCategory: "ring",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "ring2",
+        name: "men ring",
+        description: "A silver men ring.",
+        price: 100,
+        image: [ring2],
+        category: "Men",
+        subCategory: "ring",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "ring3",
+        name: "men ring",
+        description: "A silver men ring.",
+        price: 100,
+        image: [ring3],
+        category: "Men",
+        subCategory: "ring",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "ring4",
+        name: "men ring",
+        description: "A silver men ring.",
+        price: 100,
+        image: [ring4],
+        category: "Men",
+        subCategory: "ring",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "earring8",
+        name: "woman earring",
+        description: "A collection of pearl wonmans earrings.",
+        price: 100,
+        image: [earring8],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "earring9",
+        name: "woman earring",
+        description: "A collection of pearl wonmans earrings.",
+        price: 100,
+        image: [earring9],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "bracelet1",
+        name: "Beaded Smiley face bracelet",
+        description: "A Beaded smiley bracelet.",
+        price: 100,
+        image: [bracelet2],
+        category: "Female",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },
+
     {
         _id: "aaaaa",
         name: "Women Round Neck Cotton Top",

@@ -88,13 +88,10 @@ useEffect(()=>{
       <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter ? '' :'hidden'} sm:block`}>
         <p className=' mb-3 text-sm font-medium'>TYPE</p>
         <div className=' flex flex-col gap-2 text-sm font-light text-gray-700'>
-          <p className=' flex gap-2'>
-            <input type="checkbox" className=' w-3' value={'necklace'} onChange={toggleSubCategory}/>
-            Silver Necklace
-          </p>
+         
           <p className=' flex gap-2'>
             <input type="checkbox" className=' w-3' value={'ring'} onChange={toggleSubCategory}/>
-            Silver Ring
+            Ring
           </p>
           <p className=' flex gap-2'>
             <input type="checkbox" className=' w-3' value={'earring'} onChange={toggleSubCategory}/>
@@ -102,16 +99,13 @@ useEffect(()=>{
           </p>
           <p className=' flex gap-2'>
             <input type="checkbox" className=' w-3' value={'bracelet'} onChange={toggleSubCategory}/>
-            Beaded Bracelet
+            Bracelet
           </p>
           <p className=' flex gap-2'>
             <input type="checkbox" className=' w-3' value={'pendent'} onChange={toggleSubCategory}/>
-            Beaded Pendent
+            Pendent
           </p>
-          <p className=' flex gap-2'>
-            <input type="checkbox" className=' w-3' value={'charm'} onChange={toggleSubCategory}/>
-            Charm
-          </p>
+          
         </div>
       </div>
     </div>
