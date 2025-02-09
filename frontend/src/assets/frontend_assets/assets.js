@@ -89,8 +89,26 @@ import earring7 from '../asssets/Earrings/earring7.jpg'
 import earring8 from '../asssets/Earrings/earring8.jpg'
 import earring9 from '../asssets/Earrings/earring9.jpg'
 
-import bracelet1 from '../asssets/Bracelet/smile (1).jpg'
-import bracelet2 from '../asssets/Bracelet/smile (2).jpg'
+import bracelet3 from '../asssets/Bracelet/smile (3).jpg'
+import black1 from '../asssets/Bracelet/black (1).jpg'
+import black2 from '../asssets/Bracelet/black (2).jpg'
+import black3 from '../asssets/Bracelet/black (3).jpg'
+import black4 from '../asssets/Bracelet/black (4).jpg'
+import black5 from '../asssets/Bracelet/black (5).jpg'
+import black6 from '../asssets/Bracelet/black (6).jpg'
+import brown from '../asssets/Bracelet/Brown (1).jpg'
+import charmless1 from '../asssets/Bracelet/charmless (1).jpg'
+import charmless2 from '../asssets/Bracelet/charmless (2).jpg'
+import charmless3 from '../asssets/Bracelet/charmless (3).jpg'
+import charmless4 from '../asssets/Bracelet/charmless (4).jpg'
+import charmless5 from '../asssets/Bracelet/charmless (8).jpg'
+import charmless7 from '../asssets/Bracelet/charmless (10).jpg'
+import charmless8 from '../asssets/Bracelet/charmless (12).jpg'
+import charmless9 from '../asssets/Bracelet/charmless (13).jpg'
+import charmless10 from '../asssets/Bracelet/charmless (14).jpg'
+
+
+
 
 
 
@@ -131,16 +149,17 @@ export const products = [
         bestseller: false
     },
     {
-        _id: "earring2",
+        _id: "earring8",
         name: "woman earring",
-        description: "A collection of wonmans earrings.",
+        description: "A collection of pearl wonmans earrings.",
         price: 100,
-        image: [earring2],
+        image: [earring8],
         category: "Women",
         subCategory: "earring",
         date: 1716634345448,
         bestseller: false
     },
+    
     {
         _id: "earring3",
         name: "woman earring",
@@ -151,6 +170,100 @@ export const products = [
         subCategory: "earring",
         date: 1716634345448,
         bestseller: false
+    },
+    {
+        _id: "charmless2",
+        name: "Beaded bracelet",
+        description: "A beaded bracelet with charm.",
+        price: 100,
+        image: [charmless2],
+        category: "Women",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "charmless1",
+        name: "Beaded green tiger eye bracelet",
+        description: "A beaded charmless bracelet.",
+        price: 100,
+        image: [charmless1],
+        category: "Men",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "charmless3",
+        name: "Beaded Couple bracelet",
+        description: "Couple beaded charmless  bracelet.",
+        price: 100,
+        image: [charmless3],
+        category: "Unisex",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "charmless4",
+        name: "Beaded crown bracelet",
+        description: "A beaded charmless bracelet.",
+        price: 100,
+        image: [charmless4],
+        category: "Women",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },{
+        _id: "charmless5",
+        name: "Evileye bracelet",
+        description: "A beaded charmless bracelet.",
+        price: 100,
+        image: [charmless5],
+        category: "Women",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },{
+        _id: "charmless7",
+        name: "Rose Quartzed bracelet",
+        description: "A beaded charmless bracelet.",
+        price: 100,
+        image: [charmless7],
+        category: "Women",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },{
+        _id: "charmless8",
+        name: "Amethyst bracelet",
+        description: "A beaded charmless bracelet.",
+        price: 100,
+        image: [charmless8],
+        category: "Men",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },{
+        _id: "charmless9",
+        name: "Silver pearl bracelet",
+        description: "A beaded charmless bracelet.",
+        price: 100,
+        image: [charmless9],
+        category: "Women",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },{
+        _id: "charmless10",
+        name: "Amethyst (crown chakra) bracelet",
+        description: "A beaded charmless bracelet.",
+        price: 100,
+        image: [charmless10],
+        category: "Men",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
     },
     {
         _id: "earring4",
@@ -197,6 +310,17 @@ export const products = [
         bestseller: false
     },
     {
+        _id: "brown1",
+        name: "Beaded brown tiger eye bracelet",
+        description: "A Beaded brown bracelet.",
+        price: 100,
+        image: [brown],
+        category: "Men",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
         _id: "ring1",
         name: "men ring",
         description: "A silver men ring.",
@@ -240,17 +364,7 @@ export const products = [
         date: 1716634345448,
         bestseller: true
     },
-    {
-        _id: "earring8",
-        name: "woman earring",
-        description: "A collection of pearl wonmans earrings.",
-        price: 100,
-        image: [earring8],
-        category: "Women",
-        subCategory: "earring",
-        date: 1716634345448,
-        bestseller: false
-    },
+    
     {
         _id: "earring9",
         name: "woman earring",
@@ -262,17 +376,92 @@ export const products = [
         date: 1716634345448,
         bestseller: true
     },
+   
     {
-        _id: "bracelet1",
+        _id: "bracelet2",
         name: "Beaded Smiley face bracelet",
         description: "A Beaded smiley bracelet.",
         price: 100,
-        image: [bracelet2],
+        image: [bracelet3],
         category: "Female",
         subCategory: "bracelet",
         date: 1716634345448,
         bestseller: true
     },
+    {
+        _id: "black1",
+        name: "Beaded bracelet with charm",
+        description: "A Beaded bracelet with charm.",
+        price: 100,
+        image: [black1],
+        category: "Female",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "black2",
+        name: "Beaded bracelet with charm",
+        description: "A Beaded bracelet with charm.",
+        price: 100,
+        image: [black2],
+        category: "Female",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },{
+        _id: "black3",
+        name: "Beaded bracelet with charm",
+        description: "A Beaded bracelet with charm.",
+        price: 100,
+        image: [black3],
+        category: "Female",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },{
+        _id: "black4",
+        name: "Beaded bracelet with charm",
+        description: "A Beaded bracelet with charm.",
+        price: 100,
+        image: [black4],
+        category: "Female",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },{
+        _id: "black5",
+        name: "Beaded bracelet with charm",
+        description: "A Beaded bracelet with charm.",
+        price: 100,
+        image: [black5],
+        category: "Female",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },{
+        _id: "black6",
+        name: "Beaded bracelet with charm",
+        description: "A Beaded bracelet with charm.",
+        price: 100,
+        image: [black6],
+        category: "Female",
+        subCategory: "bracelet",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "earring2",
+        name: "woman earring",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring2],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    
 
     {
         _id: "aaaaa",
