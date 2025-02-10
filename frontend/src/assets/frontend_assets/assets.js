@@ -108,6 +108,49 @@ import charmless9 from '../asssets/Bracelet/charmless (13).jpg'
 import charmless10 from '../asssets/Bracelet/charmless (14).jpg'
 
 
+import necklace1 from '../asssets/Necklace/necklace (1).jpg'
+import necklace2 from '../asssets/Necklace/necklace (2).jpg'
+import necklace3 from '../asssets/Necklace/necklace (3).jpg'
+import necklace4 from '../asssets/Necklace/couple (1).jpg'
+import necklace5 from '../asssets/Necklace/necklace (5).jpg'
+import necklace6 from '../asssets/Necklace/necklace (6).jpg'
+import necklace7 from '../asssets/Necklace/necklace (7).jpg'
+import necklace8 from '../asssets/Necklace/necklace (8).jpg'
+import necklace9 from '../asssets/Necklace/necklace (9).jpg'
+import necklace10 from '../asssets/Necklace/necklace (10).jpg'
+import necklace11 from '../asssets/Necklace/necklace (11).jpg'
+import necklace12 from '../asssets/Necklace/necklace (12).jpg'
+import necklace13 from '../asssets/Necklace/necklace (13).jpg'
+import necklace14 from '../asssets/Necklace/necklace (14).jpg'
+import necklace15 from '../asssets/Necklace/necklace (15).jpg'
+import necklace16 from '../asssets/Necklace/necklace (16).jpg'
+import necklace17 from '../asssets/Necklace/necklace (17).jpg'
+import necklace18 from '../asssets/Necklace/necklace (18).jpg'
+import necklace19 from '../asssets/Necklace/necklace (19).jpg'
+import necklace20 from '../asssets/Necklace/necklace (20).jpg'
+import necklace21 from '../asssets/Necklace/necklace (21).jpg'
+import necklace22 from '../asssets/Necklace/necklace (22).jpg'
+import necklace23 from '../asssets/Necklace/necklace (23).jpg'
+import necklace24 from '../asssets/Necklace/necklace (24).jpg'
+import necklace25 from '../asssets/Necklace/necklace (25).jpg'
+import necklace26 from '../asssets/Necklace/necklace (26).jpg'
+import necklace27 from '../asssets/Necklace/necklace (27).jpg'
+import necklace28 from '../asssets/Necklace/necklace (28).jpg'
+import necklace29 from '../asssets/Necklace/necklace (29).jpg'
+import necklace30 from '../asssets/Necklace/necklace (30).jpg'
+import necklace31 from '../asssets/Necklace/necklace (31).jpg'
+import necklace32 from '../asssets/Necklace/necklace (32).jpg'
+import necklace33 from '../asssets/Necklace/necklace (33).jpg'
+import necklace34 from '../asssets/Necklace/necklace (34).jpg'
+import necklace35 from '../asssets/Necklace/necklace (35).jpg'
+import necklace36 from '../asssets/Necklace/necklace (36).jpg'
+import necklace37 from '../asssets/Necklace/necklace (37).jpg'
+import necklace38 from '../asssets/Necklace/necklace (38).jpg'
+import necklace39 from '../asssets/Necklace/necklace (39).jpg'
+import necklace40 from '../asssets/Necklace/necklace (40).jpg'
+
+
+
 
 
 
@@ -138,39 +181,28 @@ export const assets = {
 export const products = [
 
     {
-        _id: "earring1",
-        name: "woman earring",
-        description: "A collection of wonmans earrings.",
-        price: 100,
-        image: [earring1],
-        category: "Women",
-        subCategory: "earring",
+        _id: "necklace25",
+        name: "Light blue Stoned Chain",
+        description: "A stoned chain.",
+        price: 300,
+        image: [necklace25],
+        category: "Unisex",
+        subCategory: "necklace",
         date: 1716634345448,
-        bestseller: false
     },
+    
     {
         _id: "earring8",
-        name: "woman earring",
+        name: "Woman Earring Collection",
         description: "A collection of pearl wonmans earrings.",
-        price: 100,
+        price: 400,
         image: [earring8],
         category: "Women",
         subCategory: "earring",
         date: 1716634345448,
-        bestseller: false
+        
     },
     
-    {
-        _id: "earring3",
-        name: "woman earring",
-        description: "A collection of wonmans earrings.",
-        price: 100,
-        image: [earring3],
-        category: "Women",
-        subCategory: "earring",
-        date: 1716634345448,
-        bestseller: false
-    },
     {
         _id: "charmless2",
         name: "Beaded bracelet",
@@ -180,7 +212,7 @@ export const products = [
         category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+       
     },
     {
         _id: "charmless1",
@@ -191,18 +223,18 @@ export const products = [
         category: "Men",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        
     },
     {
         _id: "charmless3",
         name: "Beaded Couple bracelet",
         description: "Couple beaded charmless  bracelet.",
-        price: 100,
+        price: 200,
         image: [charmless3],
         category: "Unisex",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        
     },
     {
         _id: "charmless4",
@@ -213,7 +245,7 @@ export const products = [
         category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        
     },{
         _id: "charmless5",
         name: "Evileye bracelet",
@@ -223,7 +255,7 @@ export const products = [
         category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        
     },{
         _id: "charmless7",
         name: "Rose Quartzed bracelet",
@@ -233,7 +265,7 @@ export const products = [
         category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+
     },{
         _id: "charmless8",
         name: "Amethyst bracelet",
@@ -243,17 +275,16 @@ export const products = [
         category: "Men",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+    
     },{
-        _id: "charmless9",
-        name: "Silver pearl bracelet",
-        description: "A beaded charmless bracelet.",
-        price: 100,
+        _id: "necklace0",
+        name: "Silver pearl Necklace",
+        description: "A beaded silver pearl necklace.",
+        price: 400,
         image: [charmless9],
         category: "Women",
-        subCategory: "bracelet",
+        subCategory: "necklace",
         date: 1716634345448,
-        bestseller: true
     },{
         _id: "charmless10",
         name: "Amethyst (crown chakra) bracelet",
@@ -263,7 +294,6 @@ export const products = [
         category: "Men",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
     },
     {
         _id: "earring4",
@@ -274,7 +304,7 @@ export const products = [
         category: "Women",
         subCategory: "earring",
         date: 1716634345448,
-        bestseller: true
+        
     },
     {
         _id: "earring5",
@@ -285,7 +315,7 @@ export const products = [
         category: "Women",
         subCategory: "earring",
         date: 1716634345448,
-        bestseller: false
+        
     },
     {
         _id: "earring6",
@@ -318,46 +348,46 @@ export const products = [
         category: "Men",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },
     {
         _id: "ring1",
         name: "men ring",
         description: "A silver men ring.",
-        price: 100,
+        price: 1500,
         image: [ring1],
         category: "Men",
         subCategory: "ring",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },
     {
         _id: "ring2",
         name: "men ring",
         description: "A silver men ring.",
-        price: 100,
+        price: 1500,
         image: [ring2],
         category: "Men",
         subCategory: "ring",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },
     {
         _id: "ring3",
         name: "men ring",
         description: "A silver men ring.",
-        price: 100,
+        price: 1500,
         image: [ring3],
         category: "Men",
         subCategory: "ring",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },
     {
         _id: "ring4",
         name: "men ring",
         description: "A silver men ring.",
-        price: 100,
+        price: 1500,
         image: [ring4],
         category: "Men",
         subCategory: "ring",
@@ -374,7 +404,7 @@ export const products = [
         category: "Women",
         subCategory: "earring",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },
    
     {
@@ -383,10 +413,10 @@ export const products = [
         description: "A Beaded smiley bracelet.",
         price: 100,
         image: [bracelet3],
-        category: "Female",
+        category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },
     {
         _id: "black1",
@@ -394,10 +424,10 @@ export const products = [
         description: "A Beaded bracelet with charm.",
         price: 100,
         image: [black1],
-        category: "Female",
+        category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },
     {
         _id: "black2",
@@ -405,50 +435,50 @@ export const products = [
         description: "A Beaded bracelet with charm.",
         price: 100,
         image: [black2],
-        category: "Female",
+        category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },{
         _id: "black3",
         name: "Beaded bracelet with charm",
         description: "A Beaded bracelet with charm.",
         price: 100,
         image: [black3],
-        category: "Female",
+        category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },{
         _id: "black4",
         name: "Beaded bracelet with charm",
         description: "A Beaded bracelet with charm.",
         price: 100,
         image: [black4],
-        category: "Female",
+        category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },{
         _id: "black5",
         name: "Beaded bracelet with charm",
         description: "A Beaded bracelet with charm.",
         price: 100,
         image: [black5],
-        category: "Female",
+        category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },{
         _id: "black6",
         name: "Beaded bracelet with charm",
         description: "A Beaded bracelet with charm.",
         price: 100,
         image: [black6],
-        category: "Female",
+        category: "Women",
         subCategory: "bracelet",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },
     {
         _id: "earring2",
@@ -461,7 +491,328 @@ export const products = [
         date: 1716634345448,
         bestseller: false
     },
+    {
+        _id: "earring3",
+        name: "Woman Earring/Top Collection",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring3],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "necklace1",
+        name: "Silver Chain",
+        description: "A readymade silver chain.",
+        price: 3000,
+        image: [necklace1],
+        category: "Men",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "necklace2",
+        name: "Silver Chain",
+        description: "A readymade silver chain.",
+        price: 2900,
+        image: [necklace2],
+        category: "Men",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "necklace39",
+        name: "Silver Chain",
+        description: "A readymade silver chain.",
+        price: 2900,
+        image: [necklace39],
+        category: "Men",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "necklace40",
+        name: "Silver Chain",
+        description: "A readymade silver chain.",
+        price: 2990,
+        image: [necklace40],
+        category: "Men",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "necklace3",
+        name: "Silver Pendent Collection",
+        description: "A readymade silver Pendent.",
+        price: 1500,
+        image: [necklace3],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace4",
+        name: "Couple Chain",
+        description: "A readymade Chain for couple.",
+        price: 2000,
+        image: [necklace4],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "necklace5",
+        name: "Couple Chain",
+        description: "A readymade Chain for couple.",
+        price: 2000,
+        image: [necklace5],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "earring1",
+        name: "Woman Earring Collection",
+        description: "A collection of wonmans earrings.",
+        price: 100,
+        image: [earring1],
+        category: "Women",
+        subCategory: "earring",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "necklace12",
+        name: "Couple Feather Chain",
+        description: "A readymade couple Chain.",
+        price: 500,
+        image: [necklace12],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace6",
+        name: "Evileye Pendent",
+        description: "A readymade Evileye Pendent.",
+        price: 100,
+        image: [necklace6],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace7",
+        name: "Women Pendent",
+        description: "A readymade Pendent.",
+        price: 100,
+        image: [necklace7],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: false
+    },
+    {
+        _id: "necklace8",
+        name: "Silver Pendent",
+        description: "A readymade silver Pendent.",
+        price: 100,
+        image: [necklace8],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace9",
+        name: "Butterfly Pendent Collection",
+        description: "A readymade butterlfy Pendent.",
+        price: 100,
+        image: [necklace9],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace10",
+        name: "Beaded Pearl Necklace",
+        description: "A beaded pearl necklace.",
+        price: 800,
+        image: [necklace10],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace11",
+        name: "Beaded Neccklce",
+        description: "A Beaded necklace.",
+        price: 300,
+        image: [necklace11],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
     
+    {
+        _id: "necklace13",
+        name: "Men Feather Chain",
+        description: "A Feather chain.",
+        price: 250,
+        image: [necklace13],
+        category: "Men",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace14",
+        name: "Pearl necklace",
+        description: "A Pearl necklace.",
+        price: 400,
+        image: [necklace14],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace15",
+        name: "Evileye beaded necklace",
+        description: "A evileye beaded necklace.",
+        price: 300,
+        image: [necklace15],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace16",
+        name: "Couple Pendent",
+        description: "A readymade Pendent.",
+        price: 800,
+        image: [necklace16],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+   
+    {
+        _id: "necklace17",
+        name: "Female Heart-Shaped Pendent",
+        description: "A readymade Pendent.",
+        price: 400,
+        image: [necklace17],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace18",
+        name: "Male Key-Shaped Pendent",
+        description: "A readymade Pendent.",
+        price: 400,
+        image: [necklace18],
+        category: "Men",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace19",
+        name: "Beaded Necklace",
+        description: "A Beaded pearl necklace.",
+        price: 100,
+        image: [necklace19],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace20",
+        name: "Feather Chain",
+        description: "A winged chain.",
+        price: 300,
+        image: [necklace20],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace21",
+        name: "Pendent for Women",
+        description: "A flower shaped necklace.",
+        price: 100,
+        image: [necklace21],
+        category: "Women",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace22",
+        name: "Black Stoned Chain",
+        description: "A stoned chain.",
+        price: 300,
+        image: [necklace22],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace23",
+        name: "Clear Stoned Chain",
+        description: "A stoned chain.",
+        price: 300,
+        image: [necklace23],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "necklace24",
+        name: "Blue Stoned Chain",
+        description: "A stoned chain.",
+        price: 300,
+        image: [necklace24],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
+    
+    {
+        _id: "necklace26",
+        name: "Red Stoned Chain",
+        description: "A stoned chain.",
+        price: 300,
+        image: [necklace22],
+        category: "Unisex",
+        subCategory: "necklace",
+        date: 1716634345448,
+        bestseller: true
+    },
 
     {
         _id: "aaaaa",
