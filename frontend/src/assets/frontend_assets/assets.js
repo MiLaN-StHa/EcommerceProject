@@ -807,7 +807,7 @@ export const products = [
         name: "Red Stoned Chain",
         description: "A stoned chain.",
         price: 300,
-        image: [necklace22],
+        image: [necklace26],
         category: "Unisex",
         subCategory: "necklace",
         date: 1716634345448,
