@@ -1,14 +1,16 @@
 import React, { useEffect, useState, createContext } from "react";
+import { useNavigate } from "react-router";
 import { products } from "../assets/frontend_assets/assets";
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
     const currency = 'Rs.';
-    const delivery_fee = 10;
+    const delivery_fee = 70;
     const [search, setSearch] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({});
+    const navigate = useNavigate();
 
     // ✅ Fix: Properly Update Cart Items
     const addToCart = (itemId) => {
@@ -45,7 +47,7 @@ const ShopContextProvider = (props) => {
     const value = {
         products, currency, delivery_fee,
         search, setSearch, showSearch, setShowSearch,
-        cartItems, addToCart, getCartCount, updateQuantity, getCartAmount
+        cartItems, addToCart, getCartCount, updateQuantity, getCartAmount,navigate
     };
 
     return (
