@@ -23,10 +23,29 @@ const ShopContextProvider = (props) => {
         return Object.values(cartItems).reduce((total, count) => total + count, 0);
     };
 
+    // ✅ Fix: Update quantity in the cart
+    const updateQuantity = (itemId, quantity) => {
+        let cartData = structuredClone(cartItems);
+        cartData[itemId] = quantity;
+        setCartItems(cartData);
+    };
+
+    // ✅ Fix: Get total cart amount
+    const getCartAmount = () => {
+        let totalAmount = 0;
+        for (const itemId in cartItems) {
+            const itemInfo = products.find((product) => product._id === itemId);
+            if (itemInfo && cartItems[itemId] > 0) {
+                totalAmount += itemInfo.price * cartItems[itemId]; // Multiply price by quantity
+            }
+        }
+        return totalAmount;
+    };
+
     const value = {
         products, currency, delivery_fee,
         search, setSearch, showSearch, setShowSearch,
-        cartItems, addToCart, getCartCount
+        cartItems, addToCart, getCartCount, updateQuantity, getCartAmount
     };
 
     return (
