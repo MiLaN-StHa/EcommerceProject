@@ -40,18 +40,18 @@ const About = () => {
       <div className="flex flex-col md:flex-row text-sm mb-20">
         <div className=" border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
         <b>Quality Assurance:</b>
-        <p>We carefully handpick and design each piece of jewelry to ensure it meets our high standards of quality, elegance, and durability.</p>
+        <p className=" text-gray-600">We carefully handpick and design each piece of jewelry to ensure it meets our high standards of quality, elegance, and durability.</p>
         </div>
         <div className=" border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
         <b>Effortless Shopping:</b>
-        <p>With a seamless and user-friendly interface, Naomi Collections makes finding and purchasing your perfect accessory a simple and enjoyable experience.</p>
+        <p className=" text-gray-600">With a seamless and user-friendly interface, Naomi Collections makes finding and purchasing your perfect accessory a simple and enjoyable experience.</p>
         </div>
         <div className=" border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
         <b>Exceptional Customer Care:</b>
-        <p>Our team of passionate experts is committed to providing top-notch service at every step of your journey, ensuring that your satisfaction is always our priority.</p>
+        <p className=" text-gray-600">Our team of passionate experts is committed to providing top-notch service at every step of your journey, ensuring that your satisfaction is always our priority.</p>
         </div>
       </div>
-      
+
     </div>
   );
 };
