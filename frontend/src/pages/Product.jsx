@@ -6,7 +6,7 @@ import RelatedProducts from "../components/RelatedProducts";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart} = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
 
@@ -21,7 +21,9 @@ const Product = () => {
     });
   };
 
+  // Scroll to top when productId changes
   useEffect(() => {
+    window.scrollTo(0, 0); // This will scroll the page to the top
     fetchProductData();
   }, [productId, products]);
 
@@ -46,7 +48,7 @@ const Product = () => {
             <img className="w-full h-auto" src={image} alt="" />
           </div>
         </div>
-        {/* ---------------Proudct Info */}
+        {/* ---------------Product Info */}
         <div className="flex-1 ">
           <h1 className="font-medium text-2xl mt-2">{productData.name}</h1>
           <div className="flex items-center gap-1 mt-2">
@@ -64,7 +66,10 @@ const Product = () => {
           <p className="mt-5 text-gray-500 md:w-4/5">
             {productData.description}
           </p>
-          <button onClick={()=>addToCart(productData._id)} className="bg-black text-white px-8 py-3 my-8 text-sm active:bg-gray-700 ">
+          <button
+            onClick={() => addToCart(productData._id)}
+            className="bg-black text-white px-8 py-3 my-8 text-sm active:bg-gray-700 "
+          >
             ADD TO CART
           </button>
           <hr className="mt-8 sm:w-4/5 " />
@@ -101,9 +106,11 @@ const Product = () => {
         </div>
       </div>
 
-{/*------------------ Display releted products */}
-<RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
-
+      {/*------------------ Display related products */}
+      <RelatedProducts
+        category={productData.category}
+        subCategory={productData.subCategory}
+      />
     </div>
   ) : (
     <div className=" opacity-0"></div>
