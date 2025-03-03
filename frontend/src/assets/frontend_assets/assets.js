@@ -79,6 +79,8 @@ import necklace25 from '../asssets/Necklace/necklace (25).jpg'
 import necklace26 from '../asssets/Necklace/necklace (26).jpg'
 import necklace39 from '../asssets/Necklace/necklace (39).jpg'
 import necklace40 from '../asssets/Necklace/necklace (40).jpg'
+import chain1 from '../asssets/Necklace/schain.jpg'
+import chain2 from '../asssets/Necklace/schain 2.jpg'
 
 
 import womanring0 from '../asssets/Rings/wring (0).jpg'
@@ -416,21 +418,10 @@ export const products = [
    
     {
         _id: "necklace1",
-        name: "Silver Chain",
+        name: "Silver Sterling Chain",
         description: "A Pure Silver Armour Chain For Men.",
         price: 4000,
         image: [necklace1],
-        category: "Men",
-        subCategory: "necklace",
-        date: 1716634345448,
-        bestseller: false
-    },
-    {
-        _id: "necklace2",
-        name: "Silver Chain",
-        description: "A Pure Silver Armour Chain For Men.",
-        price: 2999,
-        image: [necklace2],
         category: "Men",
         subCategory: "necklace",
         date: 1716634345448,
@@ -441,23 +432,13 @@ export const products = [
         name: "Silver Chain",
         description: "A Pure Silver Armour Chain For Men.",
         price: 2999,
-        image: [necklace39],
+        image: [chain1,necklace39,necklace40,chain2],
         category: "Men",
         subCategory: "necklace",
         date: 1716634345448,
         bestseller: false
     },
-    {
-        _id: "necklace40",
-        name: "Silver Chain",
-        description: "A Pure Silver Armour Chain For Men.",
-        price: 2999,
-        image: [necklace40],
-        category: "Men",
-        subCategory: "necklace",
-        date: 1716634345448,
-        bestseller: false
-    },
+   
     {
         _id: "necklace3",
         name: "Silver Pendent Collection",
@@ -507,7 +488,7 @@ export const products = [
         name: "Couple Feather Chain",
         description: "A readymade couple Chain.",
         price: 500,
-        image: [necklace12],
+        image: [necklace12,necklace20,necklace13],
         category: "Unisex",
         subCategory: "necklace",
         date: 1716634345448,
@@ -573,24 +554,13 @@ export const products = [
         name: "Beaded Neccklce",
         description: "A Beaded necklace.",
         price: 300,
-        image: [necklace11],
+        image: [necklace11,necklace19],
         category: "Women",
         subCategory: "necklace",
         date: 1716634345448,
         bestseller: true
     },
     
-    {
-        _id: "necklace13",
-        name: "Men Feather Chain",
-        description: "A Feather chain.",
-        price: 250,
-        image: [necklace13],
-        category: "Men",
-        subCategory: "necklace",
-        date: 1716634345448,
-        bestseller: true
-    },
     {
         _id: "necklace14",
         name: "Pearl necklace",
@@ -618,52 +588,7 @@ export const products = [
         name: "Couple Pendent",
         description: "A readymade Pendent.",
         price: 800,
-        image: [necklace16],
-        category: "Unisex",
-        subCategory: "necklace",
-        date: 1716634345448,
-        bestseller: true
-    },
-   
-    {
-        _id: "necklace17",
-        name: "Female Heart-Shaped Pendent",
-        description: "A readymade Pendent.",
-        price: 400,
-        image: [necklace17],
-        category: "Women",
-        subCategory: "necklace",
-        date: 1716634345448,
-        bestseller: true
-    },
-    {
-        _id: "necklace18",
-        name: "Male Key-Shaped Pendent",
-        description: "A readymade Pendent.",
-        price: 400,
-        image: [necklace18],
-        category: "Men",
-        subCategory: "necklace",
-        date: 1716634345448,
-        bestseller: true
-    },
-    {
-        _id: "necklace19",
-        name: "Beaded Necklace",
-        description: "A Beaded pearl necklace.",
-        price: 100,
-        image: [necklace19],
-        category: "Women",
-        subCategory: "necklace",
-        date: 1716634345448,
-        bestseller: true
-    },
-    {
-        _id: "necklace20",
-        name: "Feather Chain",
-        description: "A winged chain.",
-        price: 300,
-        image: [necklace20],
+        image: [necklace16,necklace17,necklace18],
         category: "Unisex",
         subCategory: "necklace",
         date: 1716634345448,
