@@ -615,7 +615,7 @@ export const products = [
         category: "Unisex",
         subCategory: "necklace",
         date: 1716634345448,
-        bestseller: true
+        bestseller: false
     },
 
 
