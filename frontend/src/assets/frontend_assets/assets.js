@@ -1,5 +1,4 @@
 import logo from './logo.png'
-import hero_img from './hero_img.png'
 import cart_icon from './cart_icon.png'
 import bin_icon from './bin_icon.png'
 import dropdown_icon from './dropdown_icon.png'
@@ -21,16 +20,14 @@ import earring1 from '../asssets/Earrings/earring1.jpg'
 import earring2 from '../asssets/Earrings/earring2.jpg'
 import earring3 from '../asssets/Earrings/earring3.jpg'
 import earring4 from '../asssets/Earrings/earring4.jpg'
-import earring5 from '../asssets/Earrings/earring5.jpg'
+
 
 import ring1 from '../asssets/Rings/malering (1).jpg'
 import ring2 from '../asssets/Rings/malering (2).jpg'
 import ring3 from '../asssets/Rings/malering (3).jpg'
 import ring4 from '../asssets/Rings/malering (4).jpg'
-import earring6 from '../asssets/Earrings/earring6.jpg'
-import earring7 from '../asssets/Earrings/earring7.jpg'
 import earring8 from '../asssets/Earrings/earring8.jpg'
-import earring9 from '../asssets/Earrings/earring9.jpg'
+
 
 import bracelet3 from '../asssets/Bracelet/smile (3).jpg'
 import black1 from '../asssets/Bracelet/black (1).jpg'
@@ -52,7 +49,6 @@ import charmless10 from '../asssets/Bracelet/charmless (14).jpg'
 
 
 import necklace1 from '../asssets/Necklace/necklace (1).jpg'
-import necklace2 from '../asssets/Necklace/necklace (2).jpg'
 import necklace3 from '../asssets/Necklace/necklace (3).jpg'
 import necklace4 from '../asssets/Necklace/couple (1).jpg'
 import necklace5 from '../asssets/Necklace/necklace (5).jpg'
@@ -108,7 +104,6 @@ import coupleb4 from '../asssets/Bracelet/couplebracelet (4).jpg'
 
 export const assets = {
     logo,
-    hero_img,
     cart_icon,
     dropdown_icon,
     exchange_icon,
