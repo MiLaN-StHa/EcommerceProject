@@ -16,24 +16,24 @@ const loginUser = async (req, res) => {
         const user = await userModel.findOne({ email });
 
         if (!user) {
-            return res.status(400).json({ success: false, message: "User does not exist" });
+            return res.json({ success: false, message: "User does not exist" });
         }
 
         // Compare the entered password with the hashed password
         const match = await bcrypt.compare(password, user.password);
 
         if (!match) {
-            return res.status(400).json({ success: false, message: "Invalid credentials" });
+            return res.json({ success: false, message: "Invalid credentials" });
         }
 
         // Create a JWT token
         const token = createToken(user._id);
 
-        res.status(200).json({ success: true, token });
+        res.json({ success: true, token });
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: "Server error" });
+        res.json({ success: false, message: "Server error" });
     }
 };
 
@@ -45,16 +45,16 @@ const registerUser = async (req, res) => {
         // Checking if user already exists
         const exists = await userModel.findOne({ email });
         if (exists) {
-            return res.status(400).json({ success: false, message: "User Already Exists" });
+            return res.json({ success: false, message: "User Already Exists" });
         }
 
         // Validating email and password
         if (!validator.isEmail(email)) {
-            return res.status(400).json({ success: false, message: "Please Enter a Valid Email" });
+            return res.json({ success: false, message: "Please Enter a Valid Email" });
         }
 
         if (password.length < 8) {
-            return res.status(400).json({ success: false, message: "Please Enter a Strong Password" });
+            return res.json({ success: false, message: "Please Enter a Strong Password" });
         }
 
         // Hashing user password
@@ -70,11 +70,11 @@ const registerUser = async (req, res) => {
         const user = await newUser.save();
         const token = createToken(user._id);
 
-        res.status(200).json({ success: true, token });
+        res.json({ success: true, token });
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({ success: false, message: error.message });
+        res.json({ success: false, message: error.message });
     }
 };
 
@@ -93,7 +93,7 @@ const adminLogin = async (req, res) => {
 
   } catch (error) {
     console.log(error);
-        res.status(500).json({ success: false, message: error.message });
+        res.json({ success: false, message: error.message });
   }
 };
 

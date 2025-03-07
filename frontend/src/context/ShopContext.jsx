@@ -13,14 +13,25 @@ const ShopContextProvider = (props) => {
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({});
     const [products,setProducts]=useState([])
+    const [token,setToken]=useState('')
     const navigate = useNavigate();
 
     // ✅ Fix: Properly Update Cart Items
-    const addToCart = (itemId) => {
+    const addToCart = async (itemId) => {
         setCartItems(prevCart => ({
             ...prevCart, 
             [itemId]: (prevCart[itemId] || 0) + 1  // Increment count
         }));
+
+        if (token) {
+            try {
+                await axios.post(backendUrl + '/api/cart/add',{itemId},{headers:{token}})
+            } catch (error) {
+                console.log(error)
+                toast.error(error.message)
+                
+            }
+        }
     };
 
     // ✅ Fix: Correctly Count Items in Cart
@@ -29,10 +40,19 @@ const ShopContextProvider = (props) => {
     };
 
     // ✅ Fix: Update quantity in the cart
-    const updateQuantity = (itemId, quantity) => {
+    const updateQuantity = async (itemId, quantity) => {
         let cartData = structuredClone(cartItems);
         cartData[itemId] = quantity;
         setCartItems(cartData);
+        if (token) {
+            try {
+                await axios.post(backendUrl + '/api/cart/update',{itemId,quantity}, {headers:{token}})
+            } catch (error) {
+                console.log(error)
+                toast.error(error.message)
+                
+            }
+        }
     };
 
     // ✅ Fix: Get total cart amount
@@ -64,14 +84,33 @@ const ShopContextProvider = (props) => {
         }
     }
 
+    const getUserCart = async (token) => {
+        try {
+            const response = await axios.post(backendUrl + '/api/cart/get',{},{headers:{token}})
+            if (response.data.success) {
+                setCartItems(response.data.cartData)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
     useEffect(()=>{
         gerProductData()
+    },[])
+
+    useEffect(()=>{
+        if (!token && localStorage.getItem('token')) {
+            setToken(localStorage.getItem('token'))
+            getUserCart(localStorage.getItem('token'))
+        }
     },[])
 
     const value = {
         products, currency, delivery_fee,
         search, setSearch, showSearch, setShowSearch,
-        cartItems, addToCart, getCartCount, updateQuantity, getCartAmount,navigate,backendUrl
+        cartItems, addToCart, getCartCount, updateQuantity, getCartAmount,navigate,backendUrl,setToken,token
     };
 
     return (
