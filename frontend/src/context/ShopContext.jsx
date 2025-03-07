@@ -1,15 +1,18 @@
 import React, { useEffect, useState, createContext } from "react";
 import { useNavigate } from "react-router";
-import { products } from "../assets/frontend_assets/assets";
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
     const currency = 'Rs.';
     const delivery_fee = 70;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [search, setSearch] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({});
+    const [products,setProducts]=useState([])
     const navigate = useNavigate();
 
     // ✅ Fix: Properly Update Cart Items
@@ -44,10 +47,31 @@ const ShopContextProvider = (props) => {
         return totalAmount;
     };
 
+    const gerProductData =async () => {
+        try {
+            const response = await axios.get(backendUrl + '/api/product/list')
+            if(response.data.success){
+                setProducts(response.data.products)
+            }
+            else{
+                toast.error(response.data.message)
+            }
+            
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+            
+        }
+    }
+
+    useEffect(()=>{
+        gerProductData()
+    },[])
+
     const value = {
         products, currency, delivery_fee,
         search, setSearch, showSearch, setShowSearch,
-        cartItems, addToCart, getCartCount, updateQuantity, getCartAmount,navigate
+        cartItems, addToCart, getCartCount, updateQuantity, getCartAmount,navigate,backendUrl
     };
 
     return (
