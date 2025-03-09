@@ -47,7 +47,13 @@ const placeOrderImePay = async (req,res) => {
 
 //Alll orders data for Admin panel
 const allOrders = async (req,res) => {
-    
+    try {
+        const orders = await orderModel.find({})
+        res.json({success:true,orders})
+    } catch (error) {
+        onsole.log(error);
+        res.json({success:false, message:error.message})
+    }
 }
 
 //Alll orders data for Frontend
