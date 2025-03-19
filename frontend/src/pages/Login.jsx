@@ -63,7 +63,7 @@ const onSubmitHandler =async (event) => {
           <p className='cursor-pointer'>Forgot password?</p>
           {
             currentState === 'Login'
-            ? <p onClick={()=>setCurrentState('Sign up')} className='cursor-pointer'>Create Account</p>
+            ? <p onClick={()=>setCurrentState('Sign Up')} className='cursor-pointer'>Create Account</p>
             : <p onClick={()=>setCurrentState('Login')} className=' cursor-pointer'>Login Here</p>
           }
       </div>

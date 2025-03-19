@@ -70,7 +70,10 @@ const onsubmitHandler = async (event) => {
           toast.error(response.data.message)
         }
         break;
-    
+      case 'esewa':
+        const responseEsewa= await axios.post(backendUrl + '/api/order/esewa', orderData, {headers:{token}})
+        break;
+        
       default:
         break;
     }

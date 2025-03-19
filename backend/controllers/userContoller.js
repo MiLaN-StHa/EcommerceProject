@@ -16,14 +16,14 @@ const loginUser = async (req, res) => {
         const user = await userModel.findOne({ email });
 
         if (!user) {
-            return res.json({ success: false, message: "User does not exist" });
+            return res.json({ success: false, message: "Incorrect email or password" });
         }
 
         // Compare the entered password with the hashed password
         const match = await bcrypt.compare(password, user.password);
 
         if (!match) {
-            return res.json({ success: false, message: "Invalid credentials" });
+            return res.json({ success: false, message: "Incorrect email or password" });
         }
 
         // Create a JWT token
@@ -45,7 +45,7 @@ const registerUser = async (req, res) => {
         // Checking if user already exists
         const exists = await userModel.findOne({ email });
         if (exists) {
-            return res.json({ success: false, message: "User Already Exists" });
+            return res.json({ success: false, message: "Email is already registered" });
         }
 
         // Validating email and password
