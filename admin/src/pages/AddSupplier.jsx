@@ -127,8 +127,6 @@ const AddSupplier = ({ token, onSuccess }) => {
                     onChange={(e) => handleInputChange(index, "pricePerUnit", e.target.value)}
                     className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
-                    min="0"
-                    step="any"
                   />
                 </div>
 
@@ -139,8 +137,6 @@ const AddSupplier = ({ token, onSuccess }) => {
                     value={material.amountPaid}
                     onChange={(e) => handleInputChange(index, "amountPaid", e.target.value)}
                     className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    min="0"
-                    step="any"
                   />
                 </div>
               </div>
