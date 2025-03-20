@@ -8,7 +8,7 @@ const Footer = () => {
             <div>
             <p className='text-xl font-medium mb-5'>NAOMI COLLECTION</p>
                 <p className='w-full md:w-[65%] text-gray-600'>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias quidem quia accusantium ipsum harum maxime veritatis, magni debitis deserunt eaque adipisci eligendi omnis exercitationem beatae repudiandae odio quasi obcaecati veniam.
+                Naomi Collection is dedicated to crafting elegant, handmade accessories and fine silver jewelry that blend traditional craftsmanship with modern designs. Each piece is carefully created to reflect individuality, timeless beauty, and expert artistry, offering our customers unique, high-quality products that elevate their style.
                 </p>
             </div>
             <div>

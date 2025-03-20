@@ -7,7 +7,7 @@ export const addSupplier = async (req, res) => {
 
     // Validate request body
     if (!supplierName || !rawMaterials || !Array.isArray(rawMaterials) || rawMaterials.length === 0) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: 'Invalid request data. Please provide supplier name and raw materials.'
       });
@@ -24,14 +24,14 @@ export const addSupplier = async (req, res) => {
 
     await supplier.save();
 
-    res.status(201).json({
+    res.json({
       success: true,
       message: 'Supplier added successfully',
       supplier
     });
   } catch (error) {
     console.error('Error in addSupplier:', error);
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message || 'Error adding supplier'
     });
@@ -50,7 +50,7 @@ export const getSuppliers = async (req, res) => {
     });
   } catch (error) {
     console.error('Error in getSuppliers:', error);
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message || 'Error fetching suppliers'
     });
@@ -64,7 +64,7 @@ export const getSupplierById = async (req, res) => {
     const supplier = await Supplier.findById(id);
 
     if (!supplier) {
-      return res.status(404).json({
+      return res.json({
         success: false,
         message: 'Supplier not found'
       });
@@ -76,7 +76,7 @@ export const getSupplierById = async (req, res) => {
     });
   } catch (error) {
     console.error('Error in getSupplierById:', error);
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message || 'Error fetching supplier'
     });
@@ -91,7 +91,7 @@ export const updateSupplier = async (req, res) => {
 
     // Validate request body
     if (!supplierName || !rawMaterials || !Array.isArray(rawMaterials) || rawMaterials.length === 0) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: 'Invalid request data. Please provide supplier name and raw materials.'
       });
@@ -110,7 +110,7 @@ export const updateSupplier = async (req, res) => {
     );
 
     if (!supplier) {
-      return res.status(404).json({
+      return res.json({
         success: false,
         message: 'Supplier not found'
       });
@@ -123,7 +123,7 @@ export const updateSupplier = async (req, res) => {
     });
   } catch (error) {
     console.error('Error in updateSupplier:', error);
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message || 'Error updating supplier'
     });
@@ -137,7 +137,7 @@ export const removeSupplier = async (req, res) => {
     const supplier = await Supplier.findByIdAndDelete(id);
 
     if (!supplier) {
-      return res.status(404).json({
+      return res.json({
         success: false,
         message: 'Supplier not found'
       });
@@ -149,7 +149,7 @@ export const removeSupplier = async (req, res) => {
     });
   } catch (error) {
     console.error('Error in removeSupplier:', error);
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message || 'Error removing supplier'
     });
@@ -162,7 +162,7 @@ export const updatePayment = async (req, res) => {
     const { supplierId, materialIndex, amountPaid } = req.body;
 
     if (!supplierId || materialIndex === undefined || amountPaid === undefined) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: 'Invalid request data. Please provide supplierId, materialIndex, and amountPaid.'
       });
@@ -171,14 +171,14 @@ export const updatePayment = async (req, res) => {
     const supplier = await Supplier.findById(supplierId);
 
     if (!supplier) {
-      return res.status(404).json({
+      return res.json({
         success: false,
         message: 'Supplier not found'
       });
     }
 
     if (materialIndex >= supplier.rawMaterials.length) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: 'Invalid material index'
       });
@@ -202,7 +202,7 @@ export const updatePayment = async (req, res) => {
     });
   } catch (error) {
     console.error('Error in updatePayment:', error);
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message || 'Error updating payment'
     });

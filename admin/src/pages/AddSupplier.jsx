@@ -22,70 +22,37 @@ const AddSupplier = ({ token, onSuccess }) => {
     setRawMaterials(rawMaterials.filter((_, i) => i !== index));
   };
 
-  // Calculate totals for a material
-  const calculateMaterialTotals = (material) => {
-    const quantity = Number(material.quantity) || 0;
-    const pricePerUnit = Number(material.pricePerUnit) || 0;
-    const amountPaid = Number(material.amountPaid) || 0;
-    const totalAmount = quantity * pricePerUnit;
-    const remainingAmount = totalAmount - amountPaid;
-
-    return {
-      ...material,
-      quantity,
-      pricePerUnit,
-      amountPaid,
-      totalAmount,
-      remainingAmount
-    };
-  };
-
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form data
-    if (!supplierName || !rawMaterials.length) {
+    if (!supplierName || rawMaterials.some((m) => !m.materialName || !m.quantity || !m.pricePerUnit)) {
       return toast.error("Please fill in all required fields");
     }
 
-    // Convert string values to numbers and validate
-    const formattedMaterials = rawMaterials.map(calculateMaterialTotals);
+    const formattedMaterials = rawMaterials.map((material) => {
+      const { quantity, pricePerUnit, amountPaid } = material;
+      const totalAmount = quantity * pricePerUnit;
+      return {
+        ...material,
+        totalAmount,
+        remainingAmount: totalAmount - amountPaid,
+      };
+    });
 
-    // Validate all materials
-    const invalidMaterial = formattedMaterials.find(
-      material =>
-        !material.materialName ||
-        material.quantity <= 0 ||
-        material.pricePerUnit <= 0 ||
-        material.amountPaid < 0
-    );
-
-    if (invalidMaterial) {
-      return toast.error("Please fill in all fields with valid numbers");
-    }
-
-    // Calculate supplier totals
-    const totalAmount = formattedMaterials.reduce((sum, material) => sum + material.totalAmount, 0);
-    const totalPaid = formattedMaterials.reduce((sum, material) => sum + material.amountPaid, 0);
-    const totalRemaining = totalAmount - totalPaid;
+    const totalAmount = formattedMaterials.reduce((sum, { totalAmount }) => sum + totalAmount, 0);
+    const totalPaid = formattedMaterials.reduce((sum, { amountPaid }) => sum + amountPaid, 0);
 
     const newSupplier = {
       supplierName,
       rawMaterials: formattedMaterials,
       totalAmount,
       totalPaid,
-      totalRemaining
+      totalRemaining: totalAmount - totalPaid,
     };
 
     try {
-      const response = await axios.post(
-        backendUrl + "/api/supplier/add",
-        newSupplier,
-        {
-          headers: { token },
-        }
-      );
+      const response = await axios.post(backendUrl + "/api/supplier/add", newSupplier,{headers: { token },});
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -96,58 +63,56 @@ const AddSupplier = ({ token, onSuccess }) => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.error(error);
       toast.error(error.response?.data?.message || error.message);
     }
   };
 
+  // Handle input change
+  const handleInputChange = (index, field, value) => {
+    const updatedMaterials = [...rawMaterials];
+    updatedMaterials[index][field] = value;
+    setRawMaterials(updatedMaterials);
+  };
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm">
+    <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm">
       <h2 className="text-xl font-semibold mb-4">Add New Supplier</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block mb-2">Supplier Name</label>
+          <label className="block mb-2 text-sm font-medium text-gray-700">Supplier Name</label>
           <input
             type="text"
             value={supplierName}
             onChange={(e) => setSupplierName(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
             required
           />
         </div>
 
         {/* Raw materials list */}
         <div className="space-y-4">
-          <h3 className="font-medium">Raw Materials</h3>
+          <h3 className="font-medium text-gray-700">Raw Materials</h3>
           {rawMaterials.map((material, index) => (
             <div key={index} className="p-4 border rounded-lg bg-gray-50">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block mb-1">Material Name</label>
+                  <label className="block mb-1 text-sm font-medium text-gray-700">Material Name</label>
                   <input
                     type="text"
                     value={material.materialName}
-                    onChange={(e) => {
-                      const updatedMaterials = [...rawMaterials];
-                      updatedMaterials[index].materialName = e.target.value;
-                      setRawMaterials(updatedMaterials);
-                    }}
-                    className="w-full p-2 border border-gray-300 rounded"
+                    onChange={(e) => handleInputChange(index, "materialName", e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block mb-1">Quantity</label>
+                  <label className="block mb-1 text-sm font-medium text-gray-700">Quantity</label>
                   <input
                     type="number"
                     value={material.quantity}
-                    onChange={(e) => {
-                      const updatedMaterials = [...rawMaterials];
-                      updatedMaterials[index].quantity = e.target.value;
-                      setRawMaterials(updatedMaterials);
-                    }}
-                    className="w-full p-2 border border-gray-300 rounded"
+                    onChange={(e) => handleInputChange(index, "quantity", e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                     min="0"
                     step="any"
@@ -155,16 +120,12 @@ const AddSupplier = ({ token, onSuccess }) => {
                 </div>
 
                 <div>
-                  <label className="block mb-1">Price Per Unit (₹)</label>
+                  <label className="block mb-1 text-sm font-medium text-gray-700">Price Per Unit (Rs.)</label>
                   <input
                     type="number"
                     value={material.pricePerUnit}
-                    onChange={(e) => {
-                      const updatedMaterials = [...rawMaterials];
-                      updatedMaterials[index].pricePerUnit = e.target.value;
-                      setRawMaterials(updatedMaterials);
-                    }}
-                    className="w-full p-2 border border-gray-300 rounded"
+                    onChange={(e) => handleInputChange(index, "pricePerUnit", e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                     min="0"
                     step="any"
@@ -172,37 +133,23 @@ const AddSupplier = ({ token, onSuccess }) => {
                 </div>
 
                 <div>
-                  <label className="block mb-1">Amount Paid (₹)</label>
+                  <label className="block mb-1 text-sm font-medium text-gray-700">Amount Paid (Rs.)</label>
                   <input
                     type="number"
                     value={material.amountPaid}
-                    onChange={(e) => {
-                      const updatedMaterials = [...rawMaterials];
-                      updatedMaterials[index].amountPaid = e.target.value;
-                      setRawMaterials(updatedMaterials);
-                    }}
-                    className="w-full p-2 border border-gray-300 rounded"
+                    onChange={(e) => handleInputChange(index, "amountPaid", e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     min="0"
                     step="any"
                   />
                 </div>
               </div>
 
-              {/* Show calculated totals */}
-              {material.quantity && material.pricePerUnit && (
-                <div className="mt-4 text-sm text-gray-600">
-                  <p>Total Amount: ₹{(Number(material.quantity) * Number(material.pricePerUnit)).toFixed(2)}</p>
-                  {material.amountPaid && (
-                    <p>Remaining Amount: ₹{((Number(material.quantity) * Number(material.pricePerUnit)) - Number(material.amountPaid)).toFixed(2)}</p>
-                  )}
-                </div>
-              )}
-
               {rawMaterials.length > 1 && (
                 <button
                   type="button"
                   onClick={() => removeRawMaterial(index)}
-                  className="mt-4 px-4 py-2 text-red-500 border border-red-500 rounded hover:bg-red-500 hover:text-white"
+                  className="mt-4 w-full sm:w-auto px-4 py-2 text-red-500 border border-red-500 rounded-md hover:bg-red-500 hover:text-white transition-colors"
                 >
                   Remove Material
                 </button>
@@ -211,33 +158,18 @@ const AddSupplier = ({ token, onSuccess }) => {
           ))}
         </div>
 
-        {/* Show supplier totals */}
-        {rawMaterials.some(m => m.quantity && m.pricePerUnit) && (
-          <div className="p-4 border rounded-lg bg-gray-50">
-            <h3 className="font-medium mb-2">Supplier Totals</h3>
-            <div className="space-y-1 text-sm text-gray-600">
-              <p>Total Amount: ₹{rawMaterials.reduce((sum, m) => sum + (Number(m.quantity) * Number(m.pricePerUnit)), 0).toFixed(2)}</p>
-              <p>Total Paid: ₹{rawMaterials.reduce((sum, m) => sum + (Number(m.amountPaid) || 0), 0).toFixed(2)}</p>
-              <p>Total Remaining: ₹{(
-                rawMaterials.reduce((sum, m) => sum + (Number(m.quantity) * Number(m.pricePerUnit)), 0) -
-                rawMaterials.reduce((sum, m) => sum + (Number(m.amountPaid) || 0), 0)
-              ).toFixed(2)}</p>
-            </div>
-          </div>
-        )}
-
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <button
             type="button"
             onClick={addRawMaterial}
-            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            className="w-full sm:w-auto px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors"
           >
             Add Another Material
           </button>
 
           <button
             type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
           >
             Submit Supplier
           </button>
@@ -247,4 +179,4 @@ const AddSupplier = ({ token, onSuccess }) => {
   );
 };
 
-export default AddSupplier; 
+export default AddSupplier;

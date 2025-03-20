@@ -31,7 +31,7 @@ const Sidebar = () => {
           to="/supplies"
           className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-1"
         >
-           <img className="w-10 h-10 " src={assets.supply} alt="" />
+           <img className="w-6 h-6 " src={assets.supply} alt="" />
           <p className="hidden md:block"> Supply Management</p>
         </NavLink>
       </div>
