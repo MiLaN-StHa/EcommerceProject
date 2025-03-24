@@ -3,6 +3,7 @@ import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
+import messenger from '../assets/messenger.jpg'
 
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
@@ -176,6 +177,32 @@ const Collection = () => {
               />
               Pendent/Necklace
             </p>
+          </div>
+        </div>
+
+        {/* Customize Your Own Section */}
+        <div
+          className={`border border-gray-300 pl-5 py-3 my-5 ${
+            showFilter ? "" : "hidden"
+          } sm:block`}
+        >
+          <p className="mb-3 text-sm font-medium">CUSTOMIZE YOUR OWN</p>
+          <div className="flex flex-col gap-3 text-sm text-gray-700">
+            <p className="text-sm">
+              Want to create your own unique piece? 
+            </p>
+            <a
+              href="https://www.messenger.com/t/110048958662485"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
+            >
+              <img 
+                src={messenger} 
+                className="w-5 h-5"
+              />
+              Chat with us
+            </a>
           </div>
         </div>
       </div>
