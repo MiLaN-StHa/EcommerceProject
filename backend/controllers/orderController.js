@@ -87,7 +87,7 @@ const placeOrderEsewa = async (req,res) => {
 
 
 
-// Placing order using imepay method
+// Placing order using khalti method
 
 const placeOrderImePay = async (req,res) => {
     

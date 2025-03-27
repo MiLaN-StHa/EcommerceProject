@@ -13,7 +13,7 @@ orderRouter.post('/status',adminAuth,updateStatus)
 //Payment features
 orderRouter.post('/place',authUser,placeOrder)
 orderRouter.post('/esewa',authUser,placeOrderEsewa)
-orderRouter.post('/imepay',authUser,placeOrderImePay)
+orderRouter.post('/khalti',authUser,placeOrderImePay)
 
 // user features
 orderRouter.post('/userorders',authUser,userOrders)
