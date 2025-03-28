@@ -71,9 +71,12 @@ const onsubmitHandler = async (event) => {
         }
         break;
       case 'esewa':
-        const responseEsewa= await axios.post(backendUrl + '/api/order/esewa', orderData, {headers:{token}})
+        navigate('/sorry')
         break;
-        
+      case 'khalti':
+        navigate('/sorry')
+        break;
+          
       default:
         break;
     }
