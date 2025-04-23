@@ -70,7 +70,12 @@ const AddSupplier = ({ token, onSuccess }) => {
   // Handle input change
   const handleInputChange = (index, field, value) => {
     const updatedMaterials = [...rawMaterials];
-    updatedMaterials[index][field] = value;
+    // Convert to number for quantity, pricePerUnit, and amountPaid fields
+    if (['quantity', 'pricePerUnit', 'amountPaid'].includes(field)) {
+      updatedMaterials[index][field] = value === '' ? '' : Number(value);
+    } else {
+      updatedMaterials[index][field] = value;
+    }
     setRawMaterials(updatedMaterials);
   };
 
