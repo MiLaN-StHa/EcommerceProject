@@ -9,6 +9,7 @@ import Login from './components/Login';
 import { ToastContainer } from 'react-toastify';
 import Welcome from './pages/Welcome';
 import SupplierManagement from './pages/SupplierManagement';
+import CustomizationManagement from './pages/CustomizationManagement';
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const currency = 'Rs. ';
@@ -37,6 +38,7 @@ const App = () => {
                 <Route path='/list' element={<List token={token} />} />
                 <Route path='/orders' element={<Order token={token} />} />
                 <Route path='/supplies' element={<SupplierManagement token={token} />} />
+                <Route path='/customization-management' element={<CustomizationManagement />} />
               </Routes>
             </div>
           </div>
