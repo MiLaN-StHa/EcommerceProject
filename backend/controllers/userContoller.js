@@ -40,7 +40,7 @@ const loginUser = async (req, res) => {
 // Route for user register
 const registerUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, password_confirmation } = req.body;
 
         // Checking if user already exists
         const exists = await userModel.findOne({ email });
@@ -57,6 +57,11 @@ const registerUser = async (req, res) => {
             return res.json({ success: false, message: "Please Enter a Strong Password" });
         }
 
+        // Check if passwords match
+        if (password !== password_confirmation) {
+            return res.json({ success: false, message: "Passwords do not match" });
+        }
+
         // Hashing user password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -64,7 +69,8 @@ const registerUser = async (req, res) => {
         const newUser = new userModel({
             name,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            password_confirmation: hashedPassword // Store hashed confirmation for consistency
         });
 
         const user = await newUser.save();
