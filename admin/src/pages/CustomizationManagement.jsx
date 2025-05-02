@@ -1,192 +1,179 @@
-import React, { useState, useEffect } from 'react';
-import { backendUrl } from '../App';
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { backendUrl } from '../App'
+import { toast } from 'react-toastify'
 
-const CustomizationManagement = () => {
-  const [customizations, setCustomizations] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  useEffect(() => {
-    fetchCustomizations();
-  }, []);
+const CustomizationManagement = ({token}) => {
+  const [customizations, setCustomizations] = useState([])
+  const [selectedImage, setSelectedImage] = useState(null)
 
   const fetchCustomizations = async () => {
     try {
-      const response = await fetch(`${backendUrl}/api/customizations`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch customizations');
-      }
-      const data = await response.json();
-      if (data.success && Array.isArray(data.customizations)) {
-        setCustomizations(data.customizations);
+      const response = await axios.get(backendUrl + '/api/customizations')
+      if (response.data.success) {
+        setCustomizations(response.data.customizations)
       } else {
-        setCustomizations([]);
-        console.error('Invalid data format:', data);
+        toast.error(response.data.message)
       }
-      setLoading(false);
     } catch (error) {
-      setError(error.message);
-      setLoading(false);
-      console.error('Error fetching customizations:', error);
+      console.log(error)
+      toast.error(error.message)
     }
-  };
+  }
 
-  const parseDescription = (description) => {
+  const removeCustomization = async (id) => {
     try {
-      if (typeof description === 'string') {
-        return JSON.parse(description);
+      const response = await axios.post(
+        backendUrl + '/api/customizations/remove',
+        { id },
+        { headers: { token } }
+      )
+      if (response.data.success) {
+        toast.success(response.data.message)
+        await fetchCustomizations()
+      } else {
+        toast.error(response.data.message)
       }
-      return description || {};
     } catch (error) {
-      console.error('Error parsing description:', error);
-      return {};
+      console.log(error)
+      toast.error(error.message)
     }
-  };
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
   }
 
-  if (error) {
-    return (
-      <div className="p-6">
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-          <strong className="font-bold">Error: </strong>
-          <span className="block sm:inline">{error}</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (!Array.isArray(customizations) || customizations.length === 0) {
-    return (
-      <div className="p-6">
-        <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative">
-          No customization requests found.
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    fetchCustomizations()
+  }, [])
 
   return (
-    <div className="p-4 md:p-6">
-      {/* Image Modal */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-4xl w-full mx-4">
-            <button
-              className="absolute top-4 right-4 text-white hover:text-gray-300"
-              onClick={() => setSelectedImage(null)}
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <img 
-              src={selectedImage} 
-              alt="Reference" 
-              className="max-h-[80vh] w-auto mx-auto rounded-lg shadow-xl"
-            />
-          </div>
-        </div>
-      )}
-
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="p-4 md:p-6 border-b border-gray-200">
-          <h1 className="text-2xl font-bold text-gray-800">Customization Requests</h1>
-          <p className="text-gray-600 mt-1">View customer customization requests</p>
+    <div className="p-4">
+      <h2 className='text-xl font-semibold mb-4'>Customization Requests</h2>
+      <div className='bg-white rounded-lg shadow-sm overflow-hidden'>
+        {/* Table Header */}
+        <div className='hidden md:grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] items-center py-3 px-4 bg-gray-50 text-sm font-medium text-gray-600'>
+          <span>Customer</span>
+          <span>Contact</span>
+          <span>Product</span>
+          <span>Materials</span>
+          <span>Options</span>
+          <span>Color</span>
+          <span>Reference</span>
+          <span>Action</span>
         </div>
 
-        <div className="overflow-x-auto">
-          <div className="min-w-[800px]">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Materials</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Options</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Color</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reference</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {customizations.map((customization) => {
-                  const description = parseDescription(customization.description);
-                  return (
-                    <tr key={customization._id} className="hover:bg-gray-50 transition-colors duration-150">
-                      <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">{customization.customerName}</div>
-                      </td>
-                      <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{customization.customerContact}</div>
-                      </td>
-                      <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900 capitalize">{customization.customizationType}</div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm text-gray-900">
-                          {description.materials?.map((material, index) => (
-                            <span key={material} className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              {material}
-                            </span>
-                          ))}
-                        </div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm text-gray-900">
-                          {Object.entries(description.options || {}).map(([key, value]) => (
-                            <div key={key} className="mb-1">
-                              <span className="font-medium">{key}:</span> {value}
-                            </div>
-                          ))}
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="flex items-center space-x-2">
-                          <div 
-                            className="w-6 h-6 rounded-full border border-gray-300 shadow-sm"
-                            style={{ backgroundColor: description.beadColor || '#d4af37' }}
-                          />
-                          <div>
-                            <div className="text-sm font-medium text-gray-900">{description.colorName || 'Gold'}</div>
-                            <div className="text-xs text-gray-500">{description.beadColor || '#d4af37'}</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 whitespace-nowrap">
-                        {customization.referenceImage && (
-                          <button
-                            onClick={() => setSelectedImage(customization.referenceImage)}
-                            className="focus:outline-none"
-                          >
-                            <img 
-                              src={customization.referenceImage} 
-                              alt="Reference" 
-                              className="w-16 h-16 object-cover rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer"
-                            />
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+        {/* Customization List */}
+        <div className='divide-y divide-gray-200'>
+          {customizations.map((item, index) => {
+            const description = typeof item.description === 'string' 
+              ? JSON.parse(item.description) 
+              : item.description || {}
+
+            return (
+              <div 
+                className='grid grid-cols-3 md:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] items-center gap-4 py-3 px-4 text-sm hover:bg-gray-50 transition-colors' 
+                key={index}
+              >
+                <div className="md:col-span-1">
+                  <p className="font-medium text-gray-900">{item.customerName}</p>
+                </div>
+                <div className="md:col-span-1">
+                  <p className="text-gray-600">{item.customerContact}</p>
+                </div>
+                <div className="md:col-span-1">
+                  <p className="text-gray-900 capitalize">{item.customizationType}</p>
+                </div>
+                <div className="md:col-span-1">
+                  <div className="flex flex-wrap gap-1">
+                    {description.materials?.map((material, i) => (
+                      <span 
+                        key={i} 
+                        className='inline-block bg-gray-100 rounded-full px-2.5 py-1 text-xs text-gray-700'
+                      >
+                        {material}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="md:col-span-1">
+                  <div className="space-y-1">
+                    {Object.entries(description.options || {}).map(([key, value]) => (
+                      <div key={key} className='text-xs text-gray-600'>
+                        <span className='font-medium text-gray-700'>{key}:</span> {value}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="md:col-span-1">
+                  <div className='flex items-center gap-2'>
+                    <div 
+                      className='w-5 h-5 rounded-full border border-gray-300 shadow-sm'
+                      style={{ backgroundColor: description.beadColor || '#d4af37' }}
+                    />
+                    <span className='text-xs text-gray-600'>{description.colorName || 'Gold'}</span>
+                  </div>
+                </div>
+                <div className="md:col-span-1">
+                  {item.referenceImage && (
+                    <button
+                      onClick={() => setSelectedImage(item.referenceImage)}
+                      className='focus:outline-none hover:opacity-90 transition-opacity'
+                    >
+                      <img
+                        src={item.referenceImage}
+                        alt="Reference"
+                        className='w-14 h-14 object-cover rounded-lg shadow-sm hover:shadow-md transition-shadow'
+                      />
+                    </button>
+                  )}
+                </div>
+                <div className="md:col-span-1">
+                  <button
+                    onClick={() => removeCustomization(item._id)} 
+                    className='text-red-500 hover:text-red-700 transition-colors text-lg font-medium cursor-pointer'
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+            )
+          })}
         </div>
+
+        {/* Image Modal */}
+        {selectedImage && (
+          <div
+            className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className='relative max-w-4xl w-full mx-4'>
+              <button
+                className='absolute top-4 right-4 text-white hover:text-gray-300 transition-colors'
+                onClick={() => setSelectedImage(null)}
+              >
+                <svg
+                  className='w-8 h-8'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M6 18L18 6M6 6l12 12'
+                  />
+                </svg>
+              </button>
+              <img
+                src={selectedImage}
+                alt='Reference'
+                className='max-h-[80vh] w-auto mx-auto rounded-lg shadow-2xl'
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CustomizationManagement; 
+export default CustomizationManagement

@@ -1,5 +1,5 @@
 import express from 'express';
-import { createCustomization, getCustomizations, updateCustomizationStatus } from '../controllers/customizeController.js';
+import { createCustomization, getCustomizations, removeCustomization, updateCustomizationStatus } from '../controllers/customizeController.js';
 import upload from '../middleware/multer.js';
 
 const router = express.Router();
@@ -12,5 +12,6 @@ router.get('/', getCustomizations);
 
 // PATCH route for updating customization status
 router.patch('/:id/status', updateCustomizationStatus);
+router.post('/remove',removeCustomization);
 
 export default router; 

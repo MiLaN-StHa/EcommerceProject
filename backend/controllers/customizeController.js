@@ -70,6 +70,40 @@ export const getCustomizations = async (req, res) => {
   }
 };
 
+export const removeCustomization = async (req, res) => {
+  try {
+    const { id } = req.body;
+    
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: 'Customization ID is required'
+      });
+    }
+
+    const deletedCustomization = await Customization.findByIdAndDelete(id);
+    
+    if (!deletedCustomization) {
+      return res.status(404).json({
+        success: false,
+        message: 'Customization not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'Customization deleted successfully'
+    });
+  } catch (error) {
+    console.error('Error deleting customization:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error deleting customization',
+      error: error.message
+    });
+  }
+};
+
 export const updateCustomizationStatus = async (req, res) => {
   try {
     const { id } = req.params;

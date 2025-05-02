@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { materialAssets } from '../assets/material/material_assets.js';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import upload from '../assets/upload_area.png'; 
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
@@ -14,8 +17,8 @@ const materialsData = {
     { name: "Green Jade", image: materialAssets.GreenJade },
   ],
   pearl: [
-    { name: "White Pearl", image: materialAssets.WhitePearl },
-    { name: "Pink Pearl", image: materialAssets.PinkPearl },
+    { name: "Pearl A", image: materialAssets.WhitePearl },
+    { name: "Pearl B", image: materialAssets.PinkPearl },
   ],
   stone: [
    {name: "Blue Stone", image: materialAssets.BlueStone},
@@ -93,7 +96,7 @@ const CustomizeProduct = () => {
       }
 
       const data = await response.json();
-      alert('Customization submitted successfully!');
+      toast.success('Customization submitted successfully!');
       // Reset form
       setSelectedAccessory('');
       setSelectedMaterials([]);
