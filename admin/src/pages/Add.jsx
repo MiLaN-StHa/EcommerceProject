@@ -17,6 +17,7 @@ const Add = ({token}) => {
   const [category,setCategory]=useState('Men')
   const [subCategory,setSubCategory]=useState('bracelet')
   const [bestseller,setBestseller]=useState(false)
+  const [stockQuantity,setStockQuantity]=useState('')
 
   const onSubmitHandler= async (e) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ const Add = ({token}) => {
       formData.append("price",price)
       formData.append("category",category)
       formData.append("subCategory",subCategory)
+      formData.append("stockQuantity",stockQuantity)
       formData.append("bestseller",bestseller)
 
       image1 && formData.append("image1",image1)
@@ -46,6 +48,7 @@ const Add = ({token}) => {
         setImage3(false)
         setImage4(false)
         setPrice('')
+        setStockQuantity('')
       }      
       else{
         toast.error(response.data.message)
@@ -116,6 +119,10 @@ const Add = ({token}) => {
         </div>
 
       </div>
+      <div>
+          <p className='mb-2'>Stock Quantity</p>
+          <input onChange={(e)=>setStockQuantity(e.target.value)} value={stockQuantity}  className='w-full px-3 py-2 sm:w-[120px]' type="Number" placeholder='50' />
+        </div>
 
       <div className='flex gap-2 mt-2'>
         <input onChange={()=>setBestseller(prev =>!prev)} checked={bestseller} value={bestseller}  type="checkbox" id="bestseller" />

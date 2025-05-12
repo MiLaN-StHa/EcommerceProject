@@ -66,11 +66,18 @@ const Product = () => {
           <p className="mt-5 text-gray-500 md:w-4/5">
             {productData.description}
           </p>
+          <div className="mt-4 text-sm">
+            <span className="font-medium">Stock Available: </span>
+            <span className={productData.stockQuantity > 0 ? "text-green-600" : "text-red-600"}>
+              {productData.stockQuantity > 0 ? productData.stockQuantity : "Out of Stock"}
+            </span>
+          </div>
           <button
             onClick={() => addToCart(productData._id)}
-            className="bg-black text-white px-8 py-3 my-8 text-sm active:bg-gray-700 "
+            className="bg-black text-white px-8 py-3 my-8 text-sm active:bg-gray-700 cursor-pointer"
+            disabled={productData.stockQuantity === 0}
           >
-            ADD TO CART
+            {productData.stockQuantity > 0 ? "ADD TO CART" : "OUT OF STOCK"}
           </button>
           <hr className="mt-8 sm:w-4/5 " />
           <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
