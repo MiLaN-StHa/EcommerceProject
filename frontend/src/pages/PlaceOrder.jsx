@@ -12,7 +12,7 @@ const PlaceOrder = () => {
 
 const [method,setMethod]=useState('cod');
 
-const {navigate,backendUrl , token, cartItems, getCartAmount,setCartItems, delivery_fee, products}=useContext(ShopContext);
+const {navigate,backendUrl , token, cartItems, getCartAmount,setCartItems, delivery_fee, products, gerProductData}=useContext(ShopContext);
 const [formData, setFormData]=useState({
   firstName:'',
   lastName:'',
@@ -64,6 +64,7 @@ const onsubmitHandler = async (event) => {
         const response = await axios.post(backendUrl+ '/api/order/place', orderData, {headers:{token}})
         if (response.data.success) {
           setCartItems({})
+          await gerProductData();
           navigate('/orders')
         }
         else{

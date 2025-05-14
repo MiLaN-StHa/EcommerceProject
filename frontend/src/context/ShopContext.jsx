@@ -14,6 +14,7 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [products, setProducts] = useState([]);
     const [token, setToken] = useState('');
+    const [stockQuantity, setStockQuantity] = useState(0);
     const navigate = useNavigate();
 
     // ✅ Fix: Properly Update Cart Items
@@ -70,6 +71,8 @@ const ShopContextProvider = (props) => {
             const response = await axios.get(backendUrl + '/api/product/list');
             if (response.data.success) {
                 setProducts(response.data.products.reverse());
+                setStockQuantity(response.data.products.stockQuantity);
+                console.log(stockQuantity);
             } else {
                 toast.error(response.data.message);
             }
@@ -114,7 +117,8 @@ const ShopContextProvider = (props) => {
     const value = {
         products, currency, delivery_fee,
         search, setSearch, showSearch, setShowSearch, setCartItems,
-        cartItems, addToCart, getCartCount, updateQuantity, getCartAmount, navigate, backendUrl, setToken, token
+        cartItems, addToCart, getCartCount, updateQuantity, getCartAmount, navigate, backendUrl, setToken, token,
+        gerProductData
     };
 
     return (

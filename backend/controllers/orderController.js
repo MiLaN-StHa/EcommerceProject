@@ -24,6 +24,14 @@ const placeOrder = async (req,res) => {
         const newOrder = new orderModel(orderData)
         await newOrder.save()
 
+        // Decrement stock for each item
+        for (const item of items) {
+            await orderModel.db.model('product').findByIdAndUpdate(
+                item._id,
+                { $inc: { stockQuantity: -item.quantity } }
+            );
+        }
+
         await userModel.findByIdAndUpdate(userId, {cartData:{}})
 
         res.json({success:true, message:"Order Placed"})
@@ -39,7 +47,38 @@ const placeOrder = async (req,res) => {
 // Placing order using esewa method
 
 const placeOrderEsewa = async (req,res) => {
-   
+    try {
+        const {userId, items, amount, address} = req.body;
+        const orderData = {
+            userId,
+            items,
+            address,
+            amount, 
+            paymentMethod:"ESEWA",
+            payment: true,
+            date: Date.now()
+        }
+
+        const newOrder = new orderModel(orderData)
+        await newOrder.save()
+
+        // Decrement stock for each item
+        for (const item of items) {
+            await orderModel.db.model('product').findByIdAndUpdate(
+                item._id,
+                { $inc: { stockQuantity: -item.quantity } }
+            );
+        }
+
+        await userModel.findByIdAndUpdate(userId, {cartData:{}})
+
+        res.json({success:true, message:"Order Placed via Esewa"})
+        
+    } catch (error) {
+        console.log(error);
+        res.json({success:false, message:error.message})
+        
+    }
 }
 
 
@@ -47,7 +86,38 @@ const placeOrderEsewa = async (req,res) => {
 // Placing order using khalti method
 
 const placeOrderKhalti = async (req,res) => {
-    
+    try {
+        const {userId, items, amount, address} = req.body;
+        const orderData = {
+            userId,
+            items,
+            address,
+            amount, 
+            paymentMethod:"KHALTI",
+            payment: true,
+            date: Date.now()
+        }
+
+        const newOrder = new orderModel(orderData)
+        await newOrder.save()
+
+        // Decrement stock for each item
+        for (const item of items) {
+            await orderModel.db.model('product').findByIdAndUpdate(
+                item._id,
+                { $inc: { stockQuantity: -item.quantity } }
+            );
+        }
+
+        await userModel.findByIdAndUpdate(userId, {cartData:{}})
+
+        res.json({success:true, message:"Order Placed via Khalti"})
+        
+    } catch (error) {
+        console.log(error);
+        res.json({success:false, message:error.message})
+        
+    }
 }
 
 //Alll orders data for Admin panel

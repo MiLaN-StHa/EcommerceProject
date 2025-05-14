@@ -22,26 +22,46 @@ const AddSupplier = ({ token, onSuccess }) => {
     setRawMaterials(rawMaterials.filter((_, i) => i !== index));
   };
 
+  // Prevent scroll on number input
+  const disableScrollOnNumberInput = (e) => {
+    e.target.blur();
+  };
+
+  // Handle input change
+  const handleInputChange = (index, field, value) => {
+    const updatedMaterials = [...rawMaterials];
+    if (["quantity", "pricePerUnit", "amountPaid"].includes(field)) {
+      updatedMaterials[index][field] = value === "" ? "" : parseFloat(value);
+    } else {
+      updatedMaterials[index][field] = value;
+    }
+    setRawMaterials(updatedMaterials);
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!supplierName || rawMaterials.some((m) => !m.materialName || !m.quantity || !m.pricePerUnit)) {
+    if (
+      !supplierName ||
+      rawMaterials.some((m) => !m.materialName || m.quantity === "" || m.pricePerUnit === "")
+    ) {
       return toast.error("Please fill in all required fields");
     }
 
     const formattedMaterials = rawMaterials.map((material) => {
-      const { quantity, pricePerUnit, amountPaid } = material;
+      const { quantity, pricePerUnit, amountPaid = 0 } = material;
       const totalAmount = quantity * pricePerUnit;
       return {
         ...material,
         totalAmount,
+        amountPaid,
         remainingAmount: totalAmount - amountPaid,
       };
     });
 
-    const totalAmount = formattedMaterials.reduce((sum, { totalAmount }) => sum + totalAmount, 0);
-    const totalPaid = formattedMaterials.reduce((sum, { amountPaid }) => sum + amountPaid, 0);
+    const totalAmount = formattedMaterials.reduce((sum, m) => sum + m.totalAmount, 0);
+    const totalPaid = formattedMaterials.reduce((sum, m) => sum + (m.amountPaid || 0), 0);
 
     const newSupplier = {
       supplierName,
@@ -52,7 +72,11 @@ const AddSupplier = ({ token, onSuccess }) => {
     };
 
     try {
-      const response = await axios.post(backendUrl + "/api/supplier/add", newSupplier,{headers: { token },});
+      const response = await axios.post(
+        backendUrl + "/api/supplier/add",
+        newSupplier,
+        { headers: { token } }
+      );
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -65,18 +89,6 @@ const AddSupplier = ({ token, onSuccess }) => {
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);
     }
-  };
-
-  // Handle input change
-  const handleInputChange = (index, field, value) => {
-    const updatedMaterials = [...rawMaterials];
-    // Convert to number for quantity, pricePerUnit, and amountPaid fields
-    if (['quantity', 'pricePerUnit', 'amountPaid'].includes(field)) {
-      updatedMaterials[index][field] = value === '' ? '' : Number(value);
-    } else {
-      updatedMaterials[index][field] = value;
-    }
-    setRawMaterials(updatedMaterials);
   };
 
   return (
@@ -117,6 +129,7 @@ const AddSupplier = ({ token, onSuccess }) => {
                     type="number"
                     value={material.quantity}
                     onChange={(e) => handleInputChange(index, "quantity", e.target.value)}
+                    onWheel={disableScrollOnNumberInput}
                     className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                     min="0"
@@ -130,8 +143,11 @@ const AddSupplier = ({ token, onSuccess }) => {
                     type="number"
                     value={material.pricePerUnit}
                     onChange={(e) => handleInputChange(index, "pricePerUnit", e.target.value)}
+                    onWheel={disableScrollOnNumberInput}
                     className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
+                    min="0"
+                    step="any"
                   />
                 </div>
 
@@ -141,7 +157,10 @@ const AddSupplier = ({ token, onSuccess }) => {
                     type="number"
                     value={material.amountPaid}
                     onChange={(e) => handleInputChange(index, "amountPaid", e.target.value)}
+                    onWheel={disableScrollOnNumberInput}
                     className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    min="0"
+                    step="any"
                   />
                 </div>
               </div>
