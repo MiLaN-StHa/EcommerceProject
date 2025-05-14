@@ -40,6 +40,7 @@ const addProduct = async (req,res) => {
             image:imagesUrl,
             category,
             subCategory,
+            stockQuantity:Number(stockQuantity),
             bestseller:bestseller === "true"? true : false,
             date: Date.now()
         } 
