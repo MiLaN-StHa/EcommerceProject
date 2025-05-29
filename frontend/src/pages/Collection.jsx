@@ -82,7 +82,7 @@ const Collection = () => {
 
           {/* SubCategory Filter */}
           <div
-  className={`bg-white lg:bg-transparent rounded-xl shadow-md lg:shadow-none p-5 lg:p-0 mt-6 border border-gray-200 lg:border-none transition-all duration-300 ${
+  className={`bg-white  rounded-xl p-5 mt-6 border border-gray-200 lg:border-none  ${
     showFilter ? "block" : "hidden lg:block"
   }`}
 >
@@ -91,7 +91,7 @@ const Collection = () => {
     {["ring", "earring", "bracelet", "necklace"].map((type) => (
       <label
         key={type}
-        className="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 rounded-lg px-3 py-2 cursor-pointer transition-all duration-200 text-sm font-medium text-gray-700"
+        className="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 px-3 py-2 cursor-pointer text-sm font-medium text-gray-700"
       >
         <input
           type="checkbox"
@@ -131,7 +131,7 @@ const Collection = () => {
             </div>
             <select
               onChange={(e) => setSortType(e.target.value)}
-              className="w-full lg:w-auto px-4 py-2 border-2 border-gray-200 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-800 focus:border-transparent"
+              className="w-full lg:w-auto px-4 py-2 border-2 border-gray-200 rounded-lg text-sm font-medium "
             >
               <option value="relavent">Sort by: Relevance</option>
               <option value="low-high">Sort by: Low to High</option>

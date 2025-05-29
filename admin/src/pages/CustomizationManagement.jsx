@@ -49,27 +49,26 @@ const CustomizationManagement = ({token}) => {
       <h2 className='text-xl font-semibold mb-4'>Customization Requests</h2>
       <div className='bg-white rounded-lg shadow-sm overflow-hidden'>
         {/* Table Header */}
-        <div className='hidden md:grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] items-center py-3 px-4 bg-gray-50 text-sm font-medium text-gray-600'>
+        <div className='hidden md:grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] items-center py-3 px-4 bg-gray-50 text-sm font-medium text-gray-600'>
           <span>Customer</span>
           <span>Contact</span>
           <span>Product</span>
           <span>Materials</span>
           <span>Options</span>
-          <span>Color</span>
           <span>Reference</span>
-          <span>Action</span>
+          <span className='pl-5'>Action</span>
         </div>
 
         {/* Customization List */}
         <div className='divide-y divide-gray-200'>
           {customizations.map((item, index) => {
-            const description = typeof item.description === 'string' 
-              ? JSON.parse(item.description) 
+            const description = typeof item.description === 'string'
+              ? JSON.parse(item.description)
               : item.description || {}
 
             return (
-              <div 
-                className='grid grid-cols-3 md:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] items-center gap-4 py-3 px-4 text-sm hover:bg-gray-50 transition-colors' 
+              <div
+                className='grid grid-cols-3 md:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] items-center gap-4 py-3 px-4 text-sm hover:bg-gray-50 transition-colors'
                 key={index}
               >
                 <div className="md:col-span-1">
@@ -84,8 +83,8 @@ const CustomizationManagement = ({token}) => {
                 <div className="md:col-span-1">
                   <div className="flex flex-wrap gap-1">
                     {description.materials?.map((material, i) => (
-                      <span 
-                        key={i} 
+                      <span
+                        key={i}
                         className='inline-block bg-gray-100 rounded-full px-2.5 py-1 text-xs text-gray-700'
                       >
                         {material}
@@ -100,15 +99,6 @@ const CustomizationManagement = ({token}) => {
                         <span className='font-medium text-gray-700'>{key}:</span> {value}
                       </div>
                     ))}
-                  </div>
-                </div>
-                <div className="md:col-span-1">
-                  <div className='flex items-center gap-2'>
-                    <div 
-                      className='w-5 h-5 rounded-full border border-gray-300 shadow-sm'
-                      style={{ backgroundColor: description.beadColor || '#d4af37' }}
-                    />
-                    <span className='text-xs text-gray-600'>{description.colorName || 'Gold'}</span>
                   </div>
                 </div>
                 <div className="md:col-span-1">
@@ -130,7 +120,7 @@ const CustomizationManagement = ({token}) => {
                     onClick={() => removeCustomization(item._id)} 
                     className='text-red-500 hover:text-red-700 transition-colors text-lg font-medium cursor-pointer'
                   >
-                    ×
+                    Reject
                   </button>
                 </div>
               </div>

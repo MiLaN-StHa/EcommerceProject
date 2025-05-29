@@ -19,7 +19,7 @@ const Contact = () => {
             href="https://www.messenger.com/t/110048958662485" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
           >
             <img 
               src={messenger} 

@@ -23,7 +23,6 @@ const materialsData = {
   stone: [
    {name: "Blue Stone", image: materialAssets.BlueStone},
    {name: "Brown Stone", image: materialAssets.BrownStone},
-   
   ],
   charm: [
     {name: "Smiley Face", image: materialAssets.SmileyFace},
@@ -31,20 +30,10 @@ const materialsData = {
   ],
 };
 
-const colorOptions = [
-  { name: 'Gold', value: '#d4af37' },
-  { name: 'Silver', value: '#c0c0c0' },
-  { name: 'Rose Gold', value: '#b76e79' },
-  { name: 'Black', value: '#000000' },
-  { name: 'White', value: '#ffffff' },
-  { name: 'Copper', value: '#b87333' },
-];
-
 const CustomizeProduct = () => {
   const [selectedAccessory, setSelectedAccessory] = useState("");
   const [selectedMaterials, setSelectedMaterials] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [selectedColor, setSelectedColor] = useState(colorOptions[0].value);
   const [referenceImage, setReferenceImage] = useState(null);
   const [customerName, setCustomerName] = useState("");
   const [customerContact, setCustomerContact] = useState("");
@@ -75,8 +64,6 @@ const CustomizeProduct = () => {
     formData.append('description', JSON.stringify({
       materials: selectedMaterials,
       options: selectedOptions,
-      beadColor: selectedColor,
-      colorName: colorOptions.find(color => color.value === selectedColor)?.name || 'Gold'
     }));
     formData.append('customerName', customerName);
     formData.append('customerContact', customerContact);
@@ -97,11 +84,10 @@ const CustomizeProduct = () => {
 
       const data = await response.json();
       toast.success('Customization submitted successfully!');
-      // Reset form
+      
       setSelectedAccessory('');
       setSelectedMaterials([]);
       setSelectedOptions({});
-      setSelectedColor(colorOptions[0].value);
       setReferenceImage(null);
       setCustomerName('');
       setCustomerContact('');
@@ -135,7 +121,9 @@ const CustomizeProduct = () => {
                 type="tel"
                 value={customerContact}
                 onChange={(e) => setCustomerContact(e.target.value)}
+                pattern="^(98|97)[0-9]{8}$"
                 className="w-full p-2 border rounded"
+                placeholder="Ex: 9876543210"
                 required
               />
             </div>
@@ -173,7 +161,6 @@ const CustomizeProduct = () => {
                 {material.charAt(0).toUpperCase() + material.slice(1)}
               </label>
 
-              {/* Show material options if selected */}
               {selectedMaterials.includes(material) && (
                 <div className="flex flex-wrap mt-3 ml-4 gap-4">
                   {materialsData[material].map((option) => (
@@ -198,28 +185,6 @@ const CustomizeProduct = () => {
               )}
             </div>
           ))}
-        </div>
-
-        {/* Color Selection */}
-        <div className="mb-6">
-          <label className="block font-medium mb-2">Select bead color:</label>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-            {colorOptions.map((color) => (
-              <div 
-                key={color.value}
-                className="flex flex-col items-center cursor-pointer"
-                onClick={() => setSelectedColor(color.value)}
-              >
-                <div 
-                  className={`w-12 h-12 rounded-full border-2 ${
-                    selectedColor === color.value ? 'border-blue-500' : 'border-gray-300'
-                  }`}
-                  style={{ backgroundColor: color.value }}
-                />
-                <span className="text-sm mt-1">{color.name}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Image Upload */}

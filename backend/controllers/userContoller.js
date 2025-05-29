@@ -119,5 +119,42 @@ const adminLogin = async (req, res) => {
         res.json({ success: false, message: error.message });
   }
 };
+const getUserProfile = async (req, res) => {
+  try {
+    const token = req.headers.token;
+    if (!token) return res.status(401).json({ success: false, message: "Unauthorized" });
 
-export { loginUser, registerUser, adminLogin };
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await userModel.findById(decoded.id).select("name email");
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+
+    res.json({ success: true, user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Failed to get user info" });
+  }
+};
+const updateUserProfile = async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    const token = req.headers.token;
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await userModel.findById(decoded.id);
+
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+
+    if (name) user.name = name;
+    if (email) user.email = email;
+
+    await user.save();
+
+    res.json({ success: true, message: "Profile updated" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Failed to update profile" });
+  }
+};
+
+
+export { loginUser, registerUser, adminLogin, getUserProfile, updateUserProfile };

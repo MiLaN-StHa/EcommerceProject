@@ -12,7 +12,7 @@ import Orders from './pages/Orders'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
-
+import Profile from './pages/Profile'
 import { ToastContainer, toast } from 'react-toastify';
 import Sorry from './pages/Sorry'
 import CustomizeProduct from './pages/Customize'
@@ -34,6 +34,7 @@ const App = () => {
         <Route path='/orders' element={<Orders/>} />
         <Route path='/sorry' element={<Sorry/>}/>
         <Route path='/customize' element={<CustomizeProduct/>}/>
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
       <Footer/>
     </div>

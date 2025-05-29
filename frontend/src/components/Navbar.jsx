@@ -64,11 +64,11 @@ const Navbar = () => {
           {/* ------------------Dropdown menu*/}
           {token && (
             <div
-              className={`absolute dropdown-menu right-0 pt-4 transition-all ${showDropdown ? 'block' : 'hidden'} group-hover:block`}
+              className={`absolute right-0 pt-4  ${showDropdown ? 'block' : 'hidden'} group-hover:block`}
               onClick={() => setShowDropdown(false)} // Close the dropdown on mobile after clicking
             >
               <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-                <p className='cursor-pointer hover:text-black'>My Profile</p>
+                <p onClick={() => navigate('/profile')}  className='cursor-pointer hover:text-black'>My Profile</p>
                 <p onClick={() => navigate('/orders')} className='cursor-pointer hover:text-black'>Orders</p>
                 <p onClick={logout} className='cursor-pointer hover:text-black'>Logout</p>
               </div>
@@ -85,7 +85,7 @@ const Navbar = () => {
       </div>
 
       {/* Sidebar for mobile screen */}
-      <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`}>
+      <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white  ${visible ? 'w-full' : 'w-0'}`}>
         <div className='flex flex-col text-gray-600'>
           <div onClick={() => setVisible(false)} className='flex items-center gap-4 p-3 cursor-pointer'>
             <img src={assets.dropdown_icon} className='h-4 rotate-180' alt="" />
