@@ -10,6 +10,34 @@ const Profile = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
+
+   const [customizations, setCustomizations] = useState([]);
+
+const loadstatus = async () => {
+  try {
+    if (!token) return;
+
+    const response = await axios.get(`${backendUrl}/api/customizations`, {
+      headers: { token }
+    });
+
+    if (response.data.success) {
+      // Filter by customer name
+      const filtered = response.data.customizations.filter(
+        (item) => item.customerName === form.name
+      );
+      setCustomizations(filtered);
+    } else {
+      toast.error("Failed to load customizations");
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error("Error loading customizations");
+  }
+};
+
+
+
   const fetchUser = async () => {
     try {
       const response = await axios.get(`${backendUrl}/api/user/profile`, {
@@ -32,32 +60,48 @@ const Profile = () => {
     }
   };
 
-  const updateProfile = async () => {
-    setSaving(true);
-    try {
-      const response = await axios.post(`${backendUrl}/api/user/update`, form, {
-        headers: { token },
-      });
+const updateProfile = async () => {
+  // email validation
+ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z]+\.(com)$/;
 
-      if (response.data.success) {
-        toast.success("Profile updated successfully");
-        fetchUser();
-      } else {
-        toast.error(response.data.message || "Failed to update profile");
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Error updating profile");
-    } finally {
-      setSaving(false);
-    }
-  };
+  if (!emailRegex.test(form.email)) {
+    toast.error("Invalid domain!! Please enter valid domain");
+    return;
+  }
 
-  useEffect(() => {
-    if (token) {
+  setSaving(true);
+  try {
+    const response = await axios.post(`${backendUrl}/api/user/update`, form, {
+      headers: { token },
+    });
+
+    if (response.data.success) {
+      toast.success("Profile updated successfully");
       fetchUser();
-     }
-  }, [token]);
+    } else {
+      toast.error(response.data.message || "Failed to update profile");
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error("Error updating profile");
+  } finally {
+    setSaving(false);
+  }
+};
+// First fetch user
+useEffect(() => {
+  if (token) {
+    fetchUser();
+  }
+}, [token]);
+
+// Then fetch customizations after form.name is updated
+useEffect(() => {
+  if (form.name) {
+    loadstatus();
+  }
+}, [form.name]);
+
 
   if (loading) return <div className="p-4">Loading...</div>;
   if (error) return <div className="p-4 text-red-500">{error}</div>;
@@ -90,6 +134,30 @@ const Profile = () => {
           className="mt-3 px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">
           {saving ? "Updating..." : "Update"}
         </button>
+        <div className="mt-6">
+  <h3 className="text-lg font-semibold mb-2">Your Customization Orders</h3>
+
+  {customizations.length === 0 ? (
+    <p className="text-gray-500">No customization orders yet.</p>
+  ) : (
+    customizations.map((item) => (
+      <div key={item._id} className="flex justify-between items-center border p-3 rounded mb-2">
+        <div>
+          <p className="font-medium">{item.customizationType}</p>
+          <p className="text-sm text-gray-600">Status: <span className={
+            item.status === 'pending' ? 'text-yellow-500' :
+            item.status === 'approved' ? 'text-green-600' :
+            'text-red-500'
+          }>{item.status}</span></p>
+        </div>
+        {item.referenceImage && (
+          <img src={item.referenceImage} alt="Reference" className="w-12 h-12 object-cover rounded" />
+        )}
+      </div>
+    ))
+  )}
+</div>
+
       </div>
     </div>
   );

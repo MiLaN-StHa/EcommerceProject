@@ -13,7 +13,6 @@ const customizationSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  additionalNotes: String,
   referenceImage: String,
   status: {
     type: String,

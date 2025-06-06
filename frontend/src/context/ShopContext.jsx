@@ -66,7 +66,7 @@ const ShopContextProvider = (props) => {
         return totalAmount;
     };
 
-    const gerProductData = async () => {
+    const getProductData = async () => {
         try {
             const response = await axios.get(backendUrl + '/api/product/list');
             if (response.data.success) {
@@ -96,7 +96,7 @@ const ShopContextProvider = (props) => {
 
     // Fetch product data when component mounts
     useEffect(() => {
-        gerProductData();
+        getProductData();
     }, []);
 
     // Fetch cart data when the token is set
@@ -118,7 +118,7 @@ const ShopContextProvider = (props) => {
         products, currency, delivery_fee,
         search, setSearch, showSearch, setShowSearch, setCartItems,
         cartItems, addToCart, getCartCount, updateQuantity, getCartAmount, navigate, backendUrl, setToken, token,
-        gerProductData
+        getProductData
     };
 
     return (

@@ -13,7 +13,7 @@ export const addSupplier = async (req, res) => {
       });
     }
 
-    // Create new supplier
+    // Create new supplier (calculations handled by middleware)
     const supplier = new Supplier({
       supplierName,
       rawMaterials,
@@ -207,4 +207,4 @@ export const updatePayment = async (req, res) => {
       message: error.message || 'Error updating payment'
     });
   }
-}; 
+};

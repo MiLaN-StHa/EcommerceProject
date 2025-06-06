@@ -62,7 +62,7 @@ const registerUser = async (req, res) => {
     if (!allowedDomains.includes(emailDomain)) {
       return res.json({
         success: false,
-        message: `Email domain not allowed. Please use a valid email like @gmail.com, @yahoo.com, etc.`,
+        message: `Invalid Email domain.`,
       });
     }
 

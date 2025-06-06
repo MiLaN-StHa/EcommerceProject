@@ -16,22 +16,5 @@ const supplierSchema = new mongoose.Schema({
   totalRemaining: {type: Number,required: true}
 });
 
-// Pre-save middleware to calculate totals
-supplierSchema.pre('save', function(next) {
-  // Calculate for each raw material
-  this.rawMaterials = this.rawMaterials.map(material => {
-    material.totalAmount = material.quantity * material.pricePerUnit;
-    material.remainingAmount = material.totalAmount - material.amountPaid;
-    return material;
-  });
-
-  // Calculate supplier totals
-  this.totalAmount = this.rawMaterials.reduce((sum, material) => sum + material.totalAmount, 0);
-  this.totalPaid = this.rawMaterials.reduce((sum, material) => sum + material.amountPaid, 0);
-  this.totalRemaining = this.totalAmount - this.totalPaid;
-
-  next();
-});
-
 const Supplier = mongoose.model('Supplier', supplierSchema);
-export default Supplier; 
+export default Supplier;

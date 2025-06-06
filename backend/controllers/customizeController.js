@@ -29,7 +29,6 @@ export const createCustomization = async (req, res) => {
       productId,
       customizationType,
       description,
-      additionalNotes,
       referenceImage,
       customerName,
       customerContact,

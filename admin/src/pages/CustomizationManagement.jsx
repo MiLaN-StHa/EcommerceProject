@@ -39,6 +39,28 @@ const CustomizationManagement = ({token}) => {
       toast.error(error.message)
     }
   }
+  
+
+
+  const updateCustomizationStatus = async (id, status) => {
+  try {
+    const response = await axios.patch(
+      `${backendUrl}/api/customizations/${id}/status`,
+      { status },
+      { headers: { token } }
+    );
+    if (response.data.success) {
+      toast.success(response.data.message);
+      await fetchCustomizations();
+    } else {
+      toast.error(response.data.message);
+    }
+  } catch (error) {
+    console.error(error);
+    toast.error(error.message);
+  }
+};
+
 
   useEffect(() => {
     fetchCustomizations()
@@ -116,12 +138,33 @@ const CustomizationManagement = ({token}) => {
                   )}
                 </div>
                 <div className="md:col-span-1">
-                  <button
-                    onClick={() => removeCustomization(item._id)} 
-                    className='text-red-500 hover:text-red-700 transition-colors text-lg font-medium cursor-pointer'
-                  >
-                    Reject
-                  </button>
+                 <div className="flex flex-col gap-1 items-start">
+  <span className='text-xs text-gray-500'>Status: {item.status}</span>
+  {item.status === 'pending' && (
+    <div className='flex gap-3'>
+      <button
+        onClick={() => updateCustomizationStatus(item._id, 'approved')}
+        className='text-green-600 hover:text-green-800 transition-colors text-sm font-medium'
+      >
+        Accept
+      </button>
+      <button
+        onClick={() => updateCustomizationStatus(item._id, 'rejected')}
+        className='text-yellow-600 hover:text-yellow-800 transition-colors text-sm font-medium'
+      >
+        Reject
+      </button>
+    </div>
+  )}
+  <button
+    onClick={() => removeCustomization(item._id)}
+    className='text-red-500 hover:text-red-700 transition-colors text-sm font-medium'
+  >
+    Remove
+  </button>
+</div>
+
+
                 </div>
               </div>
             )
